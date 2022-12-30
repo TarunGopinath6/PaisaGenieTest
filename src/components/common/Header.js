@@ -27,7 +27,7 @@ export default function ButtonAppBar() {
         <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
           <Toolbar>
 
-            <Typography variant="h6" sx={{ flexGrow: 1, textDecoration: "none", color: "white" }} component={Link} to="/">Paisa Genie</Typography>
+            <Typography variant="h6" sx={{ textDecoration: "none", color: "white" }} component={Link} to="/">Paisa Genie</Typography>
 
             {hideUserOptions ? <></> : <Button color="inherit" onClick={() => { navigate('/'); UserDeleteEverything(); }}> Logout </Button>}
 

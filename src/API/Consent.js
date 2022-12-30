@@ -7,7 +7,7 @@ class API {
 
   async getConsent(API_KEY, phone, templateType, trackingID, redirectionURL) {
 
-    console.log(redirectionURL)
+    // console.log(redirectionURL)
     try {
       const response = await axios.post('/init/redirection', {
         "vuaId": phone +"@dashboard-aa-uat",

@@ -57,6 +57,9 @@ export default function SignIn() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        console.log(process.env.REACT_APP_HOST_URL);
+
         const data = new FormData(event.currentTarget);
 
         let response = await getConsent(data.get('phone'))

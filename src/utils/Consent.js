@@ -32,7 +32,7 @@ export default function useConsent() {
             setLoading(true);
             //console.log(API_KEY)
             const response = await apiObject.getConsent(process.env.REACT_APP_API_KEY,
-                phone, "ONETIME", makeID(16), 'http://127.0.0.1:3000/dash');
+                phone, "ONETIME", makeID(16), process.env.REACT_APP_HOST_URL + '/dash');
             setLoading(false);
 
             if (response['code'] === 200) {
