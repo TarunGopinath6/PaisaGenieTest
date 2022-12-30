@@ -2,21 +2,24 @@ import create from 'zustand'
 import { persist } from 'zustand/middleware'
 
 
-const useUserStore = create(
+const useAuthStore = create(
     persist(
         (set, get) => ({
             token: "",
+            trackingID: "",
+            referenceID: "",
 
-            setToken: (token_) => set(state => ({ token: token_ })),
+            setTrackingID: (trackingID_) => set(state => ({ trackingID: trackingID_ })),
+            setReferenceID: (referenceID_) => set(state => ({ referenceID: referenceID_ })),
 
-            UserDeleteEverything: () => set(state => ({ token:"" })),
+            UserDeleteEverything: () => set(state => ({ trackingID:"", referenceID:"" })),
         }),
         {
-            name: 'user-storage',
+            name: 'auth-storage',
             getStorage: () => sessionStorage,
         }
     )
 
 );
 
-export default useUserStore;
+export default useAuthStore;

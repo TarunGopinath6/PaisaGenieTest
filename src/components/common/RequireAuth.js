@@ -1,11 +1,9 @@
-import useAuth from "../../utils/Auth";
-import useUserStore from "../../storages/AuthStore"
+import useAuthStore from "../../storages/AuthStore";
 import { Navigate } from "react-router-dom";
 
 
 export default function RequireAuth({ children }) {
-    const { authStatus } = useAuth();
-    const { token } = useUserStore()
+    const { trackingID, referenceID } = useAuthStore();
 
-    return (authStatus === true || token != "") ? children : <Navigate to="/login" replace />;
+    return (trackingID!="" && referenceID!="") ? children : <Navigate to="/" replace />;
 }

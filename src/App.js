@@ -7,6 +7,8 @@ import Footer from './components/common/Footer';
 import RequireAuth from "./components/common/RequireAuth";
 
 import Home from './pages/Home'
+import SignIn from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 
 function App() {
@@ -17,11 +19,11 @@ function App() {
                 <Header />
                 <Routes>
                     <Route exact path="/" element={<Home />}></Route>
+                    <Route exact path="/login" element={<SignIn />}></Route>
                     
                     {/* Routes that require authentication to proceed */}
 
-                    {/* <Route exact path="/dash" element={<RequireAuth> <Dashboard /> </RequireAuth>}></Route>
-                     */}
+                    <Route exact path="/dash" element={<RequireAuth> <Dashboard /> </RequireAuth>}></Route>
                     <Route path="*" element={<NoPage />}></Route>
                 </Routes>
                 <Footer />

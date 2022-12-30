@@ -23,13 +23,22 @@ const Home = () => {
         display: "flex", flexDirection: "column",
         backgroundColor: "rgb(0,0,0,0.7)"
       }}>
-<ThemeProvider theme={CustomTheme}>
-        <Container style={{display: "flex", flexDirection: "column",  height: "fit-content", margin: "auto", textAlign: "center" }}>
-          <Typography variant="h1" gutterBottom style={{color: "white"}}> Take Control of Your Financial History </Typography>
-          <Typography variant="h3" gutterBottom style={{color: "white", marginBottom: "0.75em"}}> One-stop Financial Genie at Your Fingertips </Typography>
-          <Button variant="outlined" size="large" color="neutral">Sign Up with the Acccount Aggregator Framework</Button>
-          
-        </Container>
+        <ThemeProvider theme={CustomTheme}>
+          <Container style={{
+            display: "flex", flexDirection: "column",
+            height: "fit-content", margin: "auto", textAlign: "center"
+          }}>
+            <Typography variant="h1" gutterBottom style={{ color: "white" }}>
+              Take Control of Your Financial History
+            </Typography>
+            <Typography variant="h3" gutterBottom style={{ color: "white", marginBottom: "0.75em" }}>
+              One-stop Financial Genie at Your Fingertips
+            </Typography>
+            <Button variant="outlined" size="large" color="neutral" href='/login'>
+              Sign Up with the Acccount Aggregator Framework
+            </Button>
+
+          </Container>
         </ThemeProvider>
 
       </Box>

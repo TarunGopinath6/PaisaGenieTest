@@ -11,13 +11,13 @@ import './../../assets/styles/index.css'
 import CustomTheme from '../../assets/themes/CustomTheme';
 
 import useHeaderVisiblityStore from '../../storages/HeaderVisibility';
-import useUserStore from "../../storages/AuthStore";
+import useAuthStore from "../../storages/AuthStore";
 
 
 export default function ButtonAppBar() {
 
   const { hideUserOptions } = useHeaderVisiblityStore();
-  const { UserDeleteEverything } = useUserStore();
+  const { UserDeleteEverything } = useAuthStore();
   const navigate = useNavigate();
 
   return (
