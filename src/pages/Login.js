@@ -42,7 +42,7 @@ function Copyright(props) {
 export default function SignIn() {
 
     const navigate = useNavigate();
-    const { getConsent, loading } = useConsent();
+    const { getConsent, loading, getData } = useConsent();
 
     const [error, setError] = useState(false);
     const [message, setMessage] = useState("");
@@ -138,6 +138,16 @@ export default function SignIn() {
                             sx={{ mt: 3, mb: 2 }}>
                             Sign In
                         </Button>
+
+
+                        <Button
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                            onClick={() => {getData("KjH0qXuxQvC3dG0c", "a0df2bc7-8f07-4ae2-af53-4ecb69751e27")}}
+                        >
+                            Make request.
+                        </Button> 
 
                     </Box>
                 </Box>
