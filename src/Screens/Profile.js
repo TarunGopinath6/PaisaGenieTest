@@ -93,7 +93,7 @@ const Profile = () => {
                   marginLeft: 17,
                 }}
               >
-                Profile {JSON.stringify(people)}
+                Profile
               </Text>
               
               <View
@@ -131,13 +131,13 @@ const Profile = () => {
           ]}
         >
           <Text style={{ fontSize: 16, marginBottom: 5 }}>
-            Name : Tarun Gopinath
+            Name : MR.KARPIT VORA JR
           </Text>
           <Text style={{ fontSize: 16, marginBottom: 5 }}>
             Phone: +91 98585 61742
           </Text>
           <Text style={{ fontSize: 16, marginBottom: 5 }}>
-            Email : tarungopinath@gmail.com
+            Email : karpitvora@gmail.com
           </Text>
         </View>
 

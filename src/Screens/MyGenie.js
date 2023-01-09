@@ -137,7 +137,7 @@ const MyGenie = () => {
             <View style={{ flex: 1 }}>
               <Text style={{ fontSize: 15, color: "white" }}>Hello,</Text>
               <Text style={{ fontSize: 18, color: "white" }}>
-                TARUN GOPINATH
+              MR.KARPIT VORA JR
               </Text>
             </View>
             <View>
@@ -365,6 +365,7 @@ const MyGenie = () => {
                 styles.OptionButton,
                 { marginLeft: 6, flexDirection: "row" },
               ]}
+              onPress={()=> {navigation.navigate('Deposits')}}
             >
               <View style={{ flex: 1 }}>
                 <Ionicons name="book" size={17} style={styles.OptionIcon} />

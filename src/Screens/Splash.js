@@ -10,11 +10,6 @@ const Splash = () => {
   const navigation = useNavigation();
 
   // Function that automatically redirects to the Auth page after 5.5s
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate("Auth", {});
-    }, 5500);
-  });
 
   return (
     // Wrapper for the entire page
@@ -40,6 +35,9 @@ const Splash = () => {
             color: "white",
             fontWeight: "600",
             fontFamily: "sans-serif",
+          }}
+          onPress={() => {
+            navigation.navigate("Auth", {});
           }}
         >
           One-stop financial genie at your fingertips

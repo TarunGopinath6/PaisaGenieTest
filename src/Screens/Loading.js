@@ -9,7 +9,10 @@ import useConsent from "../utils/Consent"
 import useDataStore from '../storages/DataStore';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Loading = ({ navigation }) => {
+import { useNavigation } from "@react-navigation/native";
+
+const Loading = () => {
+    const navigation = useNavigation();
 
     const { getData, dataStatus, responseStatus } = useConsent();
     const { data } = useDataStore();
@@ -26,12 +29,12 @@ const Loading = ({ navigation }) => {
     useEffect(() => {
         if (dataStatus === true && responseStatus === false) {
             setTimeout(() => {
-                navigation.navigate("Auth", {});
+                navigation.navigate("StackTabs", {});
             }, 4000);
         }
         else if (dataStatus === true && responseStatus === true) {
             setTimeout(() => {
-                navigation.navigate("MyGenie", {});
+                navigation.navigate("StackTabs", {});
             }, 4000);
         }
     }, [dataStatus, responseStatus])

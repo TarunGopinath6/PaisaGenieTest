@@ -67,7 +67,7 @@ export function StackTabs() {
             </View>
           )
         }}/>
-        <Tab.Screen name="Navigator" component={Navigator} options={{
+        {/* <Tab.Screen name="Navigator" component={Navigator} options={{
           tabBarIcon: ({focused}) => (
             <View style={{alignItems:'center', justifyContent:'center', bottom:1, top:1}}>
             <Ionicons name='compass-outline' size={22} style={{
@@ -77,7 +77,7 @@ export function StackTabs() {
             <Text style={{color: focused ? '#8c52ff' : 'black', fontSize:12}}>NAV</Text>
             </View>
           )
-        }} />
+        }} /> */}
         <Tab.Screen name="GenieGrants" component={GenieGrants} options={{
           tabBarIcon: ({focused}) => (
             <View style={{alignItems:'center', justifyContent:'center', bottom:1, top:1}}>
@@ -141,7 +141,7 @@ export default function App() {
   NavigationBar.setBackgroundColorAsync("black");
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="StackTabs" screenOptions={{
+      <Stack.Navigator initialRouteName="Splash" screenOptions={{
         headerShown:false
       }}>
         <Stack.Screen name="Splash" component={Splash} ></Stack.Screen>
