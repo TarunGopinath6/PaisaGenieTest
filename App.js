@@ -23,6 +23,7 @@ import GenieGives from './src/Screens/GenieGives';
 import BankAccount from './src/Screens/BankAccount';
 import Deposits from './src/Screens/Deposits';
 import GenieProtects from './src/Screens/GenieProtects';
+import Loading from './src/Screens/Loading';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -150,6 +151,7 @@ export default function App() {
         <Stack.Screen name="Profile" component={Profile} ></Stack.Screen>  
         <Stack.Screen name="BankAccount" component={BankAccount} ></Stack.Screen>  
         <Stack.Screen name="Deposits" component={Deposits} ></Stack.Screen>  
+        <Stack.Screen name="Loading" component={Loading} ></Stack.Screen>  
         <Stack.Screen name="Test" component={Test} ></Stack.Screen>  
         <Stack.Screen name="StackTabs" component={StackTabs} ></Stack.Screen>  
       </Stack.Navigator>

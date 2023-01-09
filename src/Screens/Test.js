@@ -9,9 +9,6 @@ import {
   VictoryLegend,
   VictoryTheme,
 } from "victory-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import DropdownComponent1 from '../Components/DropdownComponent1';
-import DropdownComponent2 from '../Components/DropdownComponent2';
 
 import {
   View,

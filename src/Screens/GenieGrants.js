@@ -248,121 +248,100 @@ const GenieGrants = () => {
             showsHorizontalScrollIndicator={false}
             styles={{ backgroundColor: "white" }}
           >
+            
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10}]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
               <View style={{ marginBottom: 8 }}>
-                <Text style={{ fontSize: 33 }}>2.06 L</Text>
+                <Text style={{ fontSize: 33 }}>10% </Text>
                 <Text
                   style={{
                     marginLeft: 0,
                     fontWeight: "bold",
                     fontSize: 17,
                     color: "#713ADF",
+                    marginTop: 5
                   }}
                 >
-                  A/C BALANCE
+                  Cashback on Netbanking
                 </Text>
               </View>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 15 }}>9.16 L</Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      color: "#713adf",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    DEBIT
-                  </Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 15 }}>11.22 L</Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      color: "#713adf",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    CREDIT
-                  </Text>
-                </View>
+            </View>
+
+            <View
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
+            >
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>0% </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 17,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  Transfer Charges on transfers over 1 L
+                </Text>
               </View>
             </View>
+
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
-              {/* closing units * nav */}
-              <Text style={{ fontSize: 33 }}>2.6 K</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.2,600
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 0,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                MUTUAL FUND
-              </Text>
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>100% </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 17,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  Cashback on using UPI
+                </Text>
+              </View>
             </View>
+
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
-              <Text style={{ fontSize: 33 }}>14.26 L</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.14,26,495
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 5,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                PENSION VAL
-              </Text>
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>0.3% </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 17,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  Additional Interest on Existing FD
+                </Text>
+              </View>
             </View>
+
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
-              <Text style={{ fontSize: 33 }}>35 K</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.35,000
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 13,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                RD VALUE
-              </Text>
-            </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>1 L</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.1,00,000
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 13,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                TD VALUE
-              </Text>
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>0.5% </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 17,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                   Reduced Interest Rate on Personal Loan
+                </Text>
+              </View>
             </View>
           </ScrollView>
         </View>
@@ -388,121 +367,62 @@ const GenieGrants = () => {
             showsHorizontalScrollIndicator={false}
             styles={{ backgroundColor: "white" }}
           >
+            
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
               <View style={{ marginBottom: 8 }}>
-                <Text style={{ fontSize: 33 }}>2.06 L</Text>
+                <Text style={{ fontSize: 33 }}>10% </Text>
                 <Text
                   style={{
                     marginLeft: 0,
                     fontWeight: "bold",
                     fontSize: 17,
                     color: "#713ADF",
+                    marginTop: 5
                   }}
                 >
-                  A/C BALANCE
+                  On Technology Stocks
                 </Text>
               </View>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 15 }}>9.16 L</Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      color: "#713adf",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    DEBIT
-                  </Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 15 }}>11.22 L</Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      color: "#713adf",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    CREDIT
-                  </Text>
-                </View>
+            </View>
+
+            <View
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
+            >
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>2% </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 17,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  Using BoB World App on all Options
+                </Text>
               </View>
             </View>
+
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
-              {/* closing units * nav */}
-              <Text style={{ fontSize: 33 }}>2.6 K</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.2,600
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 0,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                MUTUAL FUND
-              </Text>
-            </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>14.26 L</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.14,26,495
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 5,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                PENSION VAL
-              </Text>
-            </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>35 K</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.35,000
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 13,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                RD VALUE
-              </Text>
-            </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>1 L</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.1,00,000
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 13,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                TD VALUE
-              </Text>
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>2%  </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 17,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  Discount of BANKBARODA upto 250 units
+                </Text>
+              </View>
             </View>
           </ScrollView>
         </View>
@@ -519,122 +439,65 @@ const GenieGrants = () => {
             showsHorizontalScrollIndicator={false}
             styles={{ backgroundColor: "white" }}
           >
+            
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
               <View style={{ marginBottom: 8 }}>
-                <Text style={{ fontSize: 33 }}>2.06 L</Text>
+                <Text style={{ fontSize: 33 }}>20%  </Text>
                 <Text
                   style={{
                     marginLeft: 0,
                     fontWeight: "bold",
                     fontSize: 17,
                     color: "#713ADF",
+                    marginTop: 5
                   }}
                 >
-                  A/C BALANCE
+                  Discount on First Premium
                 </Text>
               </View>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 15 }}>9.16 L</Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      color: "#713adf",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    DEBIT
-                  </Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 15 }}>11.22 L</Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      color: "#713adf",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    CREDIT
-                  </Text>
-                </View>
+            </View>
+
+            <View
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
+            >
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>3%  </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 16,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  Discount of Star Health Family Health Optima Premium
+                </Text>
               </View>
             </View>
+
+            
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
-              {/* closing units * nav */}
-              <Text style={{ fontSize: 33 }}>2.6 K</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.2,600
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 0,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                MUTUAL FUND
-              </Text>
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>FREE  </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 17,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  Third Party Coverage using Digit Insurance.
+                </Text>
+              </View>
             </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>14.26 L</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.14,26,495
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 5,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                PENSION VAL
-              </Text>
-            </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>35 K</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.35,000
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 13,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                RD VALUE
-              </Text>
-            </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>1 L</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.1,00,000
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 13,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                TD VALUE
-              </Text>
-            </View>
+
           </ScrollView>
         </View>
 
@@ -650,122 +513,65 @@ const GenieGrants = () => {
             showsHorizontalScrollIndicator={false}
             styles={{ backgroundColor: "white" }}
           >
+            
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
               <View style={{ marginBottom: 8 }}>
-                <Text style={{ fontSize: 33 }}>2.06 L</Text>
+                <Text style={{ fontSize: 33 }}>25%  </Text>
                 <Text
                   style={{
                     marginLeft: 0,
                     fontWeight: "bold",
                     fontSize: 17,
                     color: "#713ADF",
+                    marginTop: 5
                   }}
                 >
-                  A/C BALANCE
+                  Discount on Axis Mutual Fund units
                 </Text>
               </View>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 15 }}>9.16 L</Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      color: "#713adf",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    DEBIT
-                  </Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 15 }}>11.22 L</Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      color: "#713adf",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    CREDIT
-                  </Text>
-                </View>
+            </View>
+
+            <View
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
+            >
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>FREE  </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 17,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  Gold Coin with purchase of Baroda Mutual Fund
+                </Text>
               </View>
             </View>
+
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
-              {/* closing units * nav */}
-              <Text style={{ fontSize: 33 }}>2.6 K</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.2,600
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 0,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                MUTUAL FUND
-              </Text>
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>2%  </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 14,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  Discount on Mutual Fund Purchases using the BOB World App
+                </Text>
+              </View>
             </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>14.26 L</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.14,26,495
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 5,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                PENSION VAL
-              </Text>
-            </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>35 K</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.35,000
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 13,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                RD VALUE
-              </Text>
-            </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>1 L</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.1,00,000
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 13,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                TD VALUE
-              </Text>
-            </View>
+
+
           </ScrollView>
         </View>
 
@@ -781,122 +587,64 @@ const GenieGrants = () => {
             showsHorizontalScrollIndicator={false}
             styles={{ backgroundColor: "white" }}
           >
+            
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
               <View style={{ marginBottom: 8 }}>
-                <Text style={{ fontSize: 33 }}>2.06 L</Text>
+                <Text style={{ fontSize: 33 }}>FREE  </Text>
                 <Text
                   style={{
                     marginLeft: 0,
                     fontWeight: "bold",
                     fontSize: 17,
                     color: "#713ADF",
+                    marginTop: 5
                   }}
                 >
-                  A/C BALANCE
+                  Auditing Services upon Purchase of NPS Plan
                 </Text>
               </View>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 15 }}>9.16 L</Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      color: "#713adf",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    DEBIT
-                  </Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 15 }}>11.22 L</Text>
-                  <Text
-                    style={{
-                      fontSize: 13,
-                      color: "#713adf",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    CREDIT
-                  </Text>
-                </View>
+            </View>
+
+            <View
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
+            >
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 32 }}>WAIVER  </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 16,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  First Installment with Purchase of NPS Plan > 15 L
+                </Text>
               </View>
             </View>
+
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 155, width: 150, margin: 10}]}
             >
-              {/* closing units * nav */}
-              <Text style={{ fontSize: 33 }}>2.6 K</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.2,600
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 0,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                MUTUAL FUND
-              </Text>
+              <View style={{ marginBottom: 8 }}>
+                <Text style={{ fontSize: 33 }}>FREE  </Text>
+                <Text
+                  style={{
+                    marginLeft: 0,
+                    fontWeight: "bold",
+                    fontSize: 17,
+                    color: "#713ADF",
+                    marginTop: 5
+                  }}
+                >
+                  Silver Coin with purchase of New NPS Plan
+                </Text>
+              </View>
             </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>14.26 L</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.14,26,495
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 5,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                PENSION VAL
-              </Text>
-            </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>35 K</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.35,000
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 13,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                RD VALUE
-              </Text>
-            </View>
-            <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
-              <Text style={{ fontSize: 33 }}>1 L</Text>
-              <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
-                Rs.1,00,000
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 13,
-                  fontWeight: "bold",
-                  fontSize: 17,
-                  color: "#713ADF",
-                }}
-              >
-                TD VALUE
-              </Text>
-            </View>
+
           </ScrollView>
         </View>
 

@@ -3,7 +3,9 @@ import { useNavigation } from "@react-navigation/native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import DropdownInsurance from "../Components/DropdownInsurance";
+
+import DropdownInsurance from "../components/DropdownInsurance";
+
 import {
   View,
   Text,
@@ -21,6 +23,9 @@ import {
 } from "react-native";
 
 const GenieProtects = () => {
+
+  const [dataVis, setDataVis] = useState(false);
+
   return (
     <SafeAreaView>
       <StatusBar backgroundColor="#5e17eb" translucent={true} />
@@ -106,7 +111,7 @@ const GenieProtects = () => {
               Enter Info
             </Text>
             <View style={{ width: "100%", marginTop: 15 }}>
-              <DropdownInsurance />
+              <DropdownInsurance /> 
             </View>
             <View style={[styles.textInputWrapper, { marginTop: "4%" }]}>
               <TextInput placeholder="Premium est." clearTextOnFocus={true} />
@@ -135,6 +140,7 @@ const GenieProtects = () => {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
+                onPress={()=>{setDataVis(true);}}
               >
                 <Text style={{ color: "white", fontSize: 15 }}>Continue</Text>
               </TouchableOpacity>
@@ -142,7 +148,7 @@ const GenieProtects = () => {
           </View>
         </View>
 
-        <View style={{ width: "100%", height: 350, marginTop: 30 }}>
+        {dataVis===true && <View style={{ width: "100%", height: 350, marginTop: 30 }}>
           <View
             style={{
               justifyContent: "space-between",
@@ -188,7 +194,7 @@ const GenieProtects = () => {
                 overflow="hidden"
               >
                 <Image
-                  source={require("../assets/Images/maxbupa.png")}
+                  source={require("../assets/Images/maxbupa.jpeg")}
                   resizeMode="contain"
                   style={{ width: 70 }}
                 ></Image>
@@ -272,7 +278,7 @@ const GenieProtects = () => {
                 overflow="hidden"
               >
                 <Image
-                  source={require("../assets/Images/starhealth.png")}
+                  source={require("../assets/Images/starhealth.jpeg")}
                   resizeMode="contain"
                   style={{ width: 65 }}
                 ></Image>
@@ -356,7 +362,7 @@ const GenieProtects = () => {
                 overflow="hidden"
               >
                 <Image
-                  source={require("../assets/Images/cholams.png")}
+                  source={require("../assets/Images/cholams.jpeg")}
                   resizeMode="contain"
                   style={{ width: 100 }}
                 ></Image>
@@ -416,7 +422,7 @@ const GenieProtects = () => {
               </TouchableOpacity>
             </View>
           </ScrollView>
-        </View>
+        </View>}
         <View
           style={{
             paddingTop: "5%",

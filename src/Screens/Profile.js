@@ -11,11 +11,62 @@ import {
   TouchableOpacity,
   ScrollView,
   ImageBackground,
+  Button,
 } from "react-native";
 
 import BannerTop from "../assets/Images/BannerTop.png";
+import useDataStore from "../storages/DataStore";
+
 
 const Profile = () => {
+
+  const { data } = useDataStore();
+
+  const [people, setPeople] = useState([]);
+
+  const findPeople = () => {
+    try {
+      for (elem in data.accounts) {
+        for (holder in elem.data.Profile.Holders) {
+          setPeople(people.push(holder));
+        }
+      }
+      // acc = data.accounts[i].data.Profile.Holders.Holder[j].name;
+    }
+    catch (err) { }
+
+    try {
+      for (elem in data.accounts) {
+        setPeople(people.push(elem.data.Account.Profile.Holders.Holder));
+      }
+      // data.accounts[i].data.Account.Profile.Holders.Holder.name;
+    }
+    catch (err) { }
+
+    try {
+      for (elem in data) {
+        for (holder in elem.Profile.Holders) {
+          setPeople(people.push(holder));
+        }
+      }
+      // acc = data[i].Profile.Holders.Holder[j].name
+    }
+    catch (err) { }
+    
+    try {
+      for (elem in data) {
+        for (holder in elem.Account.Profile.Holders) {
+          setPeople(people.push(holder));
+        }
+      }
+      // data[i].Account.Profile.Holders.Holder.name
+
+    }
+    catch (err) { }
+
+  }
+
+
   return (
     <SafeAreaView>
       <StatusBar backgroundColor="#a37bf4" translucent={true} />
@@ -42,8 +93,9 @@ const Profile = () => {
                   marginLeft: 17,
                 }}
               >
-                Profile
+                Profile {JSON.stringify(people)}
               </Text>
+              
               <View
                 style={[
                   styles.card,
@@ -91,7 +143,7 @@ const Profile = () => {
 
         {/* SETTINGS & PROFILE OPTIONS */}
         <View>
-          <View style={{ marginLeft: 17, marginTop: 30 }}>
+          {/* <View style={{ marginLeft: 17, marginTop: 30 }}>
             <Text style={{ fontWeight: "bold", fontSize: 23, marginBottom: 10 }}>
               Accounts
             </Text>
@@ -139,7 +191,9 @@ const Profile = () => {
               />
               <Text style={{ flex: 3, fontSize: 15 }}>Manage Accounts</Text>
             </View>
-          </View>
+          </View> */}
+
+
           <View style={{ marginLeft: 17, marginTop: 30 }}>
             <Text
               style={{ fontWeight: "bold", fontSize: 23, marginBottom: 10 }}

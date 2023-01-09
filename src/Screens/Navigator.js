@@ -12,6 +12,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import useIdentStore from "../storages/IdentStore";
+
 const MyGenie = () => {
   const navigation = useNavigation();
 
@@ -57,6 +59,11 @@ const MyGenie = () => {
   const GenieProtectsNav = () => {
     navigation.navigate("GenieProtects", {});
   };
+  const LoadingNav = () => {
+    navigation.navigate("Loading", {});
+  };
+
+  const {referenceID, trackingID} = useIdentStore();
 
   return (
     <SafeAreaView
@@ -135,6 +142,15 @@ const MyGenie = () => {
       <View style={styles.ButtonContainer}>
         <TouchableOpacity onPress={GenieProtectsNav} style={styles.Button}>
           <Text style={{ color: "white", fontSize: 15 }}>GenieProtects</Text>
+        </TouchableOpacity>
+      </View>      
+      <View style={styles.ButtonContainer}>
+        <TouchableOpacity onPress={LoadingNav} style={styles.Button}>
+          <Text style={{ color: "white", fontSize: 15 }}>Loading</Text>
+        </TouchableOpacity>
+      </View><View style={styles.ButtonContainer}>
+        <TouchableOpacity onPress={() => {console.log(referenceID); console.log(trackingID)}} style={styles.Button}>
+          <Text style={{ color: "white", fontSize: 15 }}>Ident Print</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

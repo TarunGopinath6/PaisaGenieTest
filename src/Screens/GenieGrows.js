@@ -1,6 +1,8 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState, useEffect } from "react";
-import Dropdown from "../Components/DropdownGrows.js";
+
+import DropdownGrows from "../components/DropdownGrows"
+
 import {
   View,
   Text,
@@ -18,6 +20,7 @@ import {
 
 const GenieGrows = () => {
   const [modalVisibleGrows, setModalVisibleGrows] = useState(false);
+  const [dataVis, setDataVis] = useState(false);
 
   return (
     <SafeAreaView style={{ paddingBottom: 55 }}>
@@ -55,7 +58,7 @@ const GenieGrows = () => {
                   Enter Info
                 </Text>
                 <View style={{ width: "90%" }}>
-                  <Dropdown></Dropdown>
+                  <DropdownGrows></DropdownGrows>
                 </View>
                 <View
                   style={{
@@ -100,7 +103,7 @@ const GenieGrows = () => {
                       alignItems: "center",
                       marginRight: 5,
                     }}
-                    onPress={() => setModalVisibleGrows(!modalVisibleGrows)}
+                    onPress={() => {setModalVisibleGrows(!modalVisibleGrows); setDataVis(true)}}
                   >
                     <Text style={{ color: "white", fontSize: 15 }}>Submit</Text>
                   </TouchableOpacity>
@@ -266,7 +269,7 @@ const GenieGrows = () => {
               alignItems: "center",
               marginBottom: 5,
             }}
-            onPress={() => setModalVisibleGrows(!modalVisibleGrows)}
+            onPress={() => {setModalVisibleGrows(!modalVisibleGrows);setDataVis(false)}}
           >
             <Text style={{ color: "#5217eb", fontSize: 15 }}>
               Generate Investment Plan
@@ -274,7 +277,7 @@ const GenieGrows = () => {
           </TouchableOpacity>
         </View>
 
-        <View
+        {dataVis===true && <View
           style={[
             styles.cardReport,
             {
@@ -391,6 +394,8 @@ const GenieGrows = () => {
             </View>
           </View>
         </View>
+        }
+
       </ScrollView>
     </SafeAreaView>
   );

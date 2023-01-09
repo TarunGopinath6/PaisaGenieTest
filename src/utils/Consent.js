@@ -38,7 +38,7 @@ export default function useConsent() {
             setLoading(true);
             //console.log(API_KEY)
             const response = await apiObject.getConsent("915d5866ebcdf53684fd37128a", 
-            phone, "ONETIME", makeID(16), 'https://bob-aa-server.onrender.com/redirect/aniPhone');
+            phone, "ONETIME", makeID(16), 'https://bob-aa-server.onrender.com/redirect/aniDev');
             setLoading(false);
 
             if (response['code'] === 200) {

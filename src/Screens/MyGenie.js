@@ -10,8 +10,9 @@ import {
   VictoryTheme,
 } from "victory-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import DropdownComponent1 from '../Components/DropdownComponent1';
-import DropdownComponent2 from '../Components/DropdownComponent2';
+
+import DropdownComponent1 from "../components/DropdownComponent1";
+import DropdownComponent2 from "../components/DropdownComponent2";
 
 import {
   View,
@@ -35,78 +36,81 @@ import BannerTop from "../assets/Images/background2.png";
 const MyGenie = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
+
+  const [dataVis, setDataVis] = useState(false);
+
   return (
     <SafeAreaView style={{ marginBottom: 55 }}>
       <ScrollView>
         {/* MODAL FOR GOAL SETTING */}
-      <View style={styles.centeredView}>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-          <View
-          style={{
-            width: "90%",
-            height: 540,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+        <View style={styles.centeredView}>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert("Modal has been closed.");
+              setModalVisible(!modalVisible);
+            }}
           >
-          <View style={[styles.card, styles.shadowProp, styles.elevation]}>
-            <Text style={{ fontSize: 35, color: "black", marginLeft:10, marginBottom:20, marginTop:10 }}>
-              Enter Info
-            </Text>
-            <View style={{width:'90%'}}>
-              <DropdownComponent1/>
-              {/* NEW COMPONENT TO BE DYNAMICALLY GENERATED, WITH EACH CATEGORY FROM COMPLETECATEGORYWISE ANALYSIS */}
-              {/* THE ADD BUTTON FOR NOW, CLOSES THE MODAL, BUT SHOULD ADD A NEW GOAL */}
-              <DropdownComponent1/>
-              {/* DICTATES LESS/MORE/EQUAL */}
-              <DropdownComponent2/>
-            </View>
-            <View style={{width:'90%', justifyContent: 'center', marginLeft:15, margin:0, padding:0}}>
-              <View style={[styles.textInputWrapper, { marginTop: "8%" }]}>
-                <TextInput placeholder="Value" clearTextOnFocus={true}/>
-              </View>
-            </View>
-            
-            <View
-              style={{
-                paddingTop: 12,
-                width: "90%",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: "10%",
-                marginLeft:8
-              }}
-            >
-              <TouchableOpacity
+            <View style={styles.centeredView}>
+              <View
                 style={{
                   width: "90%",
-                  backgroundColor: "#0779f3",
-                  padding: 7,
-                  borderRadius: 10,
+                  height: 540,
                   justifyContent: "center",
                   alignItems: "center",
-                  marginRight:5
                 }}
-                onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={{ color: "white", fontSize: 15 }}>Add Goal</Text>
-              </TouchableOpacity>
+                <View style={[styles.card, styles.shadowProp, styles.elevation]}>
+                  <Text style={{ fontSize: 35, color: "black", marginLeft: 10, marginBottom: 20, marginTop: 10 }}>
+                    Enter Info
+                  </Text>
+                  <View style={{ width: '90%' }}>
+                    <DropdownComponent1 />
+                    {/* NEW COMPONENT TO BE DYNAMICALLY GENERATED, WITH EACH CATEGORY FROM COMPLETECATEGORYWISE ANALYSIS */}
+                    {/* THE ADD BUTTON FOR NOW, CLOSES THE MODAL, BUT SHOULD ADD A NEW GOAL */}
+                    <DropdownComponent1 />
+                    {/* DICTATES LESS/MORE/EQUAL */}
+                    <DropdownComponent2 />
+                  </View>
+                  <View style={{ width: '90%', justifyContent: 'center', marginLeft: 15, margin: 0, padding: 0 }}>
+                    <View style={[styles.textInputWrapper, { marginTop: "8%" }]}>
+                      <TextInput placeholder="Value" clearTextOnFocus={true} />
+                    </View>
+                  </View>
+
+                  <View
+                    style={{
+                      paddingTop: 12,
+                      width: "90%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      marginTop: "10%",
+                      marginLeft: 8
+                    }}
+                  >
+                    <TouchableOpacity
+                      style={{
+                        width: "90%",
+                        backgroundColor: "#0779f3",
+                        padding: 7,
+                        borderRadius: 10,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginRight: 5
+                      }}
+                      onPress={() => {setModalVisible(!modalVisible); setDataVis(true); }}
+                    >
+                      <Text style={{ color: "white", fontSize: 15 }}>Add Goal</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
             </View>
-          </View>
+          </Modal>
         </View>
-          </View>
-        </Modal>
-      </View>
-        
+
         <StatusBar backgroundColor="#a37bf4" translucent={true} />
 
         {/*HEADER BACKGROUND*/}
@@ -129,7 +133,7 @@ const MyGenie = () => {
               justifyContent: "flex-end",
               alignItems: "flex-end",
             }}
-            >
+          >
             <View style={{ flex: 1 }}>
               <Text style={{ fontSize: 15, color: "white" }}>Hello,</Text>
               <Text style={{ fontSize: 18, color: "white" }}>
@@ -137,15 +141,15 @@ const MyGenie = () => {
               </Text>
             </View>
             <View>
-              <TouchableOpacity onPress={ () => navigation.navigate("Profile", {}) }>
-              <Ionicons
-                name="person"
-                size={25}
-                style={{
-                  color: "white",
-                  marginRight: 10,
-                }}
-              />
+              <TouchableOpacity onPress={() => navigation.navigate("Profile", {})}>
+                <Ionicons
+                  name="person"
+                  size={25}
+                  style={{
+                    color: "white",
+                    marginRight: 10,
+                  }}
+                />
               </TouchableOpacity>
             </View>
           </View>
@@ -156,10 +160,10 @@ const MyGenie = () => {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             styles={{ backgroundColor: "white" }}
-            >
+          >
             <View
               style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-              >
+            >
               <Text style={{ fontSize: 33 }}>2.12 Cr</Text>
               <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
                 Rs.2,12,71,895
@@ -177,7 +181,7 @@ const MyGenie = () => {
             </View>
             <View
               style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-              >
+            >
               <View style={{ marginBottom: 8 }}>
                 <Text style={{ fontSize: 33 }}>2.06 L</Text>
                 <Text
@@ -220,7 +224,7 @@ const MyGenie = () => {
             </View>
             <View
               style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-              >
+            >
               <Text style={{ fontSize: 33 }}>15.08 K</Text>
               <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
                 Rs.15,088
@@ -293,7 +297,7 @@ const MyGenie = () => {
             </View>
             <View
               style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-              >
+            >
               <Text style={{ fontSize: 33 }}>35 K</Text>
               <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
                 Rs.35,000
@@ -345,6 +349,7 @@ const MyGenie = () => {
                 styles.OptionButton,
                 { marginLeft: 6, flexDirection: "row" },
               ]}
+              onPress={()=> {navigation.navigate('BankAccount')}}
             >
               <View style={{ flex: 1 }}>
                 <Ionicons name="cube" size={17} style={styles.OptionIcon} />
@@ -502,7 +507,7 @@ const MyGenie = () => {
             marginTop: 30,
             paddingBottom: 10,
           }}
-          >
+        >
           <Text
             style={{
               marginLeft: 15,
@@ -863,7 +868,7 @@ const MyGenie = () => {
             showsHorizontalScrollIndicator={false}
             styles={{ backgroundColor: "white", marginTop: 10 }}
           >
-            <View
+            {dataVis==true &&  <View
               style={[
                 styles.goalCard,
                 {
@@ -926,7 +931,9 @@ const MyGenie = () => {
                   Spend less than Rs. 50,000 on Gambling & Betting
                 </Text>
               </View>
-            </View>
+            </View>}
+            
+
             <View
               style={[
                 styles.goalCard,
@@ -1133,7 +1140,7 @@ const MyGenie = () => {
             margin: 0,
             padding: 0,
           }}
-          >
+        >
           <TouchableOpacity
             style={{
               width: "70%",
@@ -1145,7 +1152,7 @@ const MyGenie = () => {
               borderWidth: 2,
               borderColor: "#bd8c5c",
             }}
-            
+
           >
             <Text
               style={{ color: "#bd8c5c", fontSize: 15, fontWeight: "bold" }}
@@ -1272,8 +1279,8 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    fontSize:22,
-    fontWeight:'bold'
+    fontSize: 22,
+    fontWeight: 'bold'
   }
 });
 

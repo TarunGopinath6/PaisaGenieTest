@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import DropdownLoan from "../Components/DropdownLoan";
+import DropdownLoan from "../components/DropdownLoan";
 import {
   View,
   Text,
@@ -21,6 +21,9 @@ import {
 } from "react-native";
 
 const GenieGives = () => {
+
+  const [dataVis, setDataVis] = useState(false);
+
   return (
     <SafeAreaView>
       <StatusBar backgroundColor="#5e17eb" translucent={true} />
@@ -132,13 +135,14 @@ const GenieGives = () => {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
+                onPress={()=>{setDataVis(true);}}
               >
                 <Text style={{ color: "white", fontSize: 15 }}>Continue</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
-
+        {dataVis===true &&
         <View style={{ width: "100%", height: 350, marginTop: 30 }}>
           <View
             style={{
@@ -155,7 +159,8 @@ const GenieGives = () => {
               Loan offers
             </Text>
           </View>
-          <ScrollView
+
+           <ScrollView
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             styles={{ backgroundColor: "white", marginTop: 10 }}
@@ -207,8 +212,8 @@ const GenieGives = () => {
                 ]}
               >
                 <Text style={styles.statsValText}>2,00,000</Text>
-                <Text style={styles.statsValText}>7.8%</Text>
-                <Text style={styles.statsValText}>18</Text>
+                <Text style={styles.statsValText}>8.4%</Text>
+                <Text style={styles.statsValText}>36</Text>
                 <Text style={{ fontSize: 15 }}>NEGOTIABLE</Text>
               </View>
               <TouchableOpacity
@@ -290,9 +295,9 @@ const GenieGives = () => {
                   { flex: 4.2, width: "100%", height: "100%" },
                 ]}
               >
-                <Text style={styles.statsValText}>2,00,000</Text>
-                <Text style={styles.statsValText}>7.8%</Text>
-                <Text style={styles.statsValText}>18</Text>
+                <Text style={styles.statsValText}>1,80,000</Text>
+                <Text style={styles.statsValText}>7.5%</Text>
+                <Text style={styles.statsValText}>36</Text>
                 <Text style={{ fontSize: 15 }}>NEGOTIABLE</Text>
               </View>
               <TouchableOpacity
@@ -375,8 +380,8 @@ const GenieGives = () => {
                 ]}
               >
                 <Text style={styles.statsValText}>2,00,000</Text>
-                <Text style={styles.statsValText}>7.8%</Text>
-                <Text style={styles.statsValText}>18</Text>
+                <Text style={styles.statsValText}>8.7%</Text>
+                <Text style={styles.statsValText}>30</Text>
                 <Text style={{ fontSize: 15 }}>NEGOTIABLE</Text>
               </View>
               <TouchableOpacity
@@ -413,7 +418,7 @@ const GenieGives = () => {
               </TouchableOpacity>
             </View>
           </ScrollView>
-        </View>
+        </View>}
         <View
           style={{
             paddingTop: "5%",

@@ -1,7 +1,10 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Slider } from "react-native";
-import DropdownMoratorium from "../Components/DropdownMoratorium";
+
+import DropdownMoratorium from "../components/DropdownMoratorium";
+
+
 import {
   View,
   Text,
@@ -20,6 +23,9 @@ import {
 const GenieSays = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [stateVal, setStateVal] = useState(0);
+
+  const [debtData, setDebtData] = useState(false);
+  const [morData, setMorData] = useState(false);
 
   return (
     <SafeAreaView style={{ paddingBottom: 55 }}>
@@ -68,6 +74,7 @@ const GenieSays = () => {
                     <TextInput
                       placeholder="Interest Rate"
                       clearTextOnFocus={true}
+                      keyboardType={"number-pad"}
                     />
                   </View>
                 </View>
@@ -81,7 +88,7 @@ const GenieSays = () => {
                   }}
                 >
                   <View style={[styles.textInputWrapper, { marginTop: "5%" }]}>
-                    <TextInput placeholder="Tenure" clearTextOnFocus={true} />
+                    <TextInput placeholder="Tenure" clearTextOnFocus={true} keyboardType={"number-pad"} />
                   </View>
                 </View>
 
@@ -105,7 +112,7 @@ const GenieSays = () => {
                       alignItems: "center",
                       marginRight: 5,
                     }}
-                    onPress={() => setModalVisible(!modalVisible)}
+                    onPress={() => { setModalVisible(!modalVisible); setDebtData(true); }}
                   >
                     <Text style={{ color: "white", fontSize: 15 }}>Submit</Text>
                   </TouchableOpacity>
@@ -265,7 +272,7 @@ const GenieSays = () => {
                   }}
                 >
                   {"  "}
-                  NA
+                  {debtData === false ? "NA" : "10.5%"}
                 </Text>
               </Text>
               <Text
@@ -285,7 +292,7 @@ const GenieSays = () => {
                   }}
                 >
                   {" "}
-                  NA
+                  {debtData === false ? "NA" : "120"}
                 </Text>
               </Text>
             </View>
@@ -337,7 +344,7 @@ const GenieSays = () => {
                     }}
                   >
                     {"  "}
-                    NA
+                    {debtData === false ? "NA" : "1418"}
                   </Text>
                 </Text>
               </View>
@@ -360,7 +367,7 @@ const GenieSays = () => {
                   color: "#5e17eb",
                 }}
               >
-                TOTAL: NA
+                TOTAL: {debtData === false ? "NA" : "1.70 L"}
               </Text>
               <Text
                 style={{
@@ -370,7 +377,7 @@ const GenieSays = () => {
                   marginRight: 15,
                 }}
               >
-                BALANCE: NA
+                BALANCE: {debtData === false ? "NA" : "62.16 K"}
               </Text>
             </View>
           </View>
@@ -396,46 +403,64 @@ const GenieSays = () => {
                 { marginTop: "5%", marginLeft: 10, width: "86%" },
               ]}
             >
-              <TextInput placeholder="Enter duration" clearTextOnFocus={true} />
+              <TextInput placeholder="Enter duration" clearTextOnFocus={true} keyboardType={"number-pad"}/>
             </View>
             <View style={{ width: "100%", paddingRight: 20, marginTop: 5 }}>
               <DropdownMoratorium></DropdownMoratorium>
             </View>
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: 10,
-                flexDirection: "row",
-              }}
-            >
-              <Text style={{ flex: 1, marginLeft: 50 }}>Increased EMI: </Text>
-              <Text style={{ flex: 1 }}>Rs. 5,900 </Text>
-            </View>
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "row",
-              }}
-            >
-              <Text style={{ flex: 1, marginLeft: 50 }}>
-                Increased Tenure:{" "}
-              </Text>
-              <Text style={{ flex: 1 }}>Rs. 5,900 </Text>
-            </View>
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "row",
-              }}
-            >
-              <Text style={{ flex: 1, marginLeft: 50 }}>
-                Increased Payment:{" "}
-              </Text>
-              <Text style={{ flex: 1 }}>Rs. 5,900 </Text>
-            </View>
+
+            {morData===true && <Fragment>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: 10,
+                  flexDirection: "row",
+                }}
+              >
+                <Text style={{ flex: 1, marginLeft: 50 }}>Duration: </Text>
+                <Text style={{ flex: 1 }}>12 </Text>
+              </View>
+
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: 10,
+                  flexDirection: "row",
+                }}
+              >
+                <Text style={{ flex: 1, marginLeft: 50 }}>Moratorium Type: </Text>
+                <Text style={{ flex: 1 }}>Increased EMI </Text>
+              </View>
+
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: 10,
+                  flexDirection: "row",
+                }}
+              >
+                <Text style={{ flex: 1, marginLeft: 50 }}>Increased EMI: </Text>
+                <Text style={{ flex: 1 }}>Rs. 256 </Text>
+              </View>
+
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "row",
+                }}
+              >
+                <Text style={{ flex: 1, marginLeft: 50 }}>
+                  Increased Payment:{" "}
+                </Text>
+                <Text style={{ flex: 1 }}>Rs. 10,655 </Text>
+              </View>
+
+            </Fragment>}
+
             <View
               style={{
                 justifyContent: "center",
@@ -444,7 +469,7 @@ const GenieSays = () => {
                 marginTop: 20,
               }}
             >
-              <TouchableOpacity
+              {morData===false && <TouchableOpacity
                 style={{
                   width: "70%",
                   backgroundColor: "#0779f3",
@@ -453,9 +478,10 @@ const GenieSays = () => {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
+                onPress={()=> {setMorData(true);}}
               >
                 <Text style={{ color: "white", fontSize: 15 }}>Submit</Text>
-              </TouchableOpacity>
+              </TouchableOpacity>}
             </View>
           </View>
         </View>
