@@ -14,33 +14,8 @@ import {
 } from "react-native";
 
 import BannerTop from "../assets/Images/BannerTop.png";
-import useDataStore from "../storages/DataStore";
-
 
 const Profile = () => {
-
-  const { data } = useDataStore();
-  
-  const SumFunc = () => {
-    let sum = 10;
-    data.analytics.top5FundTransfer.CREDIT.overall.forEach((object) => {sum += object.amount;})
-    return sum;
-  }
-
-
-  const accountDataGet = () => {
-    let acc = [];
-    try{
-      acc = data.accounts[i].data.Profile.Holders.Holder[j].name;
-      data.accounts[i].data.Account.Profile.Holders.Holder.name
-    }
-    catch(err)
-    {
-      acc = data[i].Profile.Holders.Holder[j].name
-      data[i].Account.Profile.Holders.Holder.name
-    }
-  }
-
   return (
     <SafeAreaView>
       <StatusBar backgroundColor="#a37bf4" translucent={true} />
@@ -49,7 +24,7 @@ const Profile = () => {
         <View style={{ flexDirection: "column", flex: 1 }}>
           <View style={{ flex: 1 }}>
             <ImageBackground
-              source={require("../assets/Images/1.png")}
+              source={require("../assets/Images/background.png")}
               resizeMode="cover"
               style={{
                 paddingTop: 5,
@@ -67,7 +42,7 @@ const Profile = () => {
                   marginLeft: 17,
                 }}
               >
-                PROFILE
+                Profile
               </Text>
               <View
                 style={[
@@ -87,11 +62,6 @@ const Profile = () => {
         </View>
 
         {/* INFO DISPLAY */}
-        
-        {
-
-
-        }
         <View
           style={[
             styles.card,
@@ -109,22 +79,20 @@ const Profile = () => {
           ]}
         >
           <Text style={{ fontSize: 16, marginBottom: 5 }}>
-            Name : {data.accounts[0].data.Profile.Holders.Holder[0].name}
+            Name : Tarun Gopinath
           </Text>
           <Text style={{ fontSize: 16, marginBottom: 5 }}>
-            Phone: {data.accounts[0].data.Profile.Holders.Holder[0].mobile}
+            Phone: +91 98585 61742
           </Text>
           <Text style={{ fontSize: 16, marginBottom: 5 }}>
-            Email : {data.accounts[0].data.Profile.Holders.Holder[0].email}
+            Email : tarungopinath@gmail.com
           </Text>
         </View>
 
         {/* SETTINGS & PROFILE OPTIONS */}
         <View>
           <View style={{ marginLeft: 17, marginTop: 30 }}>
-            <Text
-              style={{ fontWeight: "bold", fontSize: 23, marginBottom: 10 }}
-            >
+            <Text style={{ fontWeight: "bold", fontSize: 23, marginBottom: 10 }}>
               Accounts
             </Text>
             <View

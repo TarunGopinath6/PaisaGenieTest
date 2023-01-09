@@ -26,6 +26,7 @@ const Info = () => {
         height: "100%",
       }}
     >
+      <StatusBar backgroundColor="#5271ff" translucent={true} />
       <ImageBackground
         source={Background}
         resizeMode="cover"
@@ -43,7 +44,7 @@ const Info = () => {
             justifyContent: "center",
             alignItems: "center",
           }}
-        >
+          >
           <View style={[styles.card, styles.shadowProp, styles.elevation]}>
             <Text style={{ fontSize: 35, fontWeight: "600", color: "#696969" }}>
               Enter Info

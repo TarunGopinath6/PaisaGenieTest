@@ -19,13 +19,20 @@ const GenieGrants = () => {
       <ScrollView>
         {/* HEADER */}
         <View style={{ flexDirection: "column", flex: 1 }}>
-          <View style={{ flex: 1 }}>
+          <View
+            style={{
+              flex: 1,
+              borderBottomLeftRadius: 35,
+              borderBottomRightRadius: 35,
+            }}
+            overflow="hidden"
+          >
             <ImageBackground
-              source={require("../assets/Images/background.png")}
+              source={require("../assets/Images/background2.png")}
               resizeMode="cover"
               style={{
                 paddingTop: 5,
-                height: 100,
+                height: 120,
               }}
             >
               {/* </View>
@@ -54,6 +61,51 @@ const GenieGrants = () => {
             </ImageBackground>
           </View>
         </View>
+
+        {/* GENIE WISHES IMAGE  */}
+        <View
+          style={{
+            marginTop: 10,
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            marginLeft: 35,
+          }}
+          >
+          <Image
+            source={require("../assets/Images/final_1.png")}
+            style={{ height: 80, flex: 1 }}
+            resizeMode="contain"
+          />
+          <View style={{ flex: 2 }}>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: "bold",
+                paddingLeft: 10,
+                color: "#5e17eb",
+              }}
+            >
+              PAISA GENIE'S
+            </Text>
+            <Text
+              style={{ fontSize: 20, fontWeight: "bold", color: "#5e17eb" }}
+            >
+              3 Wasool Wishes
+            </Text>
+          </View>
+        </View>
+
+        {/* DIVIDER */}
+        <View 
+          style={{
+            height: 1,
+            backgroundColor: "#5e17eb",
+            marginTop: 5,
+            marginBottom: 5,
+          }}
+        />
+
         {/* THREE WISHES */}
         <View
           style={{
@@ -61,7 +113,7 @@ const GenieGrants = () => {
             alignItems: "center",
             marginTop: 10,
           }}
-        >
+          >
           <TouchableOpacity
             style={{
               width: "100%",
@@ -163,54 +215,30 @@ const GenieGrants = () => {
               </View>
             </TouchableOpacity>
           </View>
-          <View
-            style={{
-              marginTop: 20,
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              source={require("../assets/Images/final_1.png")}
-              style={{ height: 80, flex: 1 }}
-              resizeMode="contain"
-            />
-            <View style={{ flex: 2 }}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "bold",
-                  paddingLeft: 10,
-                  color: "#5e17eb",
-                }}
-              >
-                PAISA GENIE'S
-              </Text>
-              <Text
-                style={{ fontSize: 20, fontWeight: "bold", color: "#5e17eb" }}
-              >
-                3 Wasool Wishes
-              </Text>
-            </View>
-          </View>
         </View>
 
-        {/* REWARDS LIST PER SECTION */}
+        {/* DIVIDER */}
         <View
           style={{
-            backgroundColor: "#a37bf4",
-            paddingBottom: 15,
-            marginTop: 25,
+            height: 2.5,
+            backgroundColor: "#5e17eb",
+            marginTop: 40,
+            marginBottom: 5,
           }}
-        >
+        />
+
+        {/* REWARDS LIST PER SECTION */}
+
+        <View
+          style={styles.offerRow}
+          >
           <Text
             style={{
               marginTop: 15,
               marginLeft: 10,
               fontWeight: "bold",
               fontSize: 23,
-              marginBottom: 5,
+              marginBottom: 7,
             }}
           >
             Banking
@@ -221,7 +249,7 @@ const GenieGrants = () => {
             styles={{ backgroundColor: "white" }}
           >
             <View
-              style={[styles.card, { height: 150, width: 150, margin: 10 }]}
+              style={[styles.card, { height: 150, width: 150, margin: 10}]}
             >
               <View style={{ marginBottom: 8 }}>
                 <Text style={{ fontSize: 33 }}>2.06 L</Text>
@@ -339,10 +367,13 @@ const GenieGrants = () => {
           </ScrollView>
         </View>
 
-        <View style={{ backgroundColor: "#5e17eb", paddingBottom: 15 }}>
+        {/* DIVIDER */}
+        <View style={styles.divider} />
+
+        <View style={styles.offerRow}>
           <Text
             style={{
-              color: "white",
+              color: "black",
               marginTop: 15,
               marginLeft: 10,
               fontWeight: "bold",
@@ -476,16 +507,11 @@ const GenieGrants = () => {
           </ScrollView>
         </View>
 
-        <View style={{ backgroundColor: "#a37bf4", paddingBottom: 15 }}>
-          <Text
-            style={{
-              fontWeight: "bold",
-              fontSize: 23,
-              marginBottom: 5,
-              marginTop: 15,
-              marginLeft: 10,
-            }}
-          >
+        {/* DIVIDER */}
+        <View style={styles.divider}/>
+
+        <View style={styles.offerRow}>
+          <Text style={styles.headingText}>
             Insurance
           </Text>
           <ScrollView
@@ -612,17 +638,11 @@ const GenieGrants = () => {
           </ScrollView>
         </View>
 
-        <View style={{ backgroundColor: "#5e17eb", paddingBottom: 15 }}>
-          <Text
-            style={{
-              color: "white",
-              marginTop: 15,
-              marginLeft: 10,
-              fontWeight: "bold",
-              fontSize: 23,
-              marginBottom: 5,
-            }}
-          >
+        {/* DIVIDER */}
+        <View style={styles.divider}/>
+
+        <View style={styles.offerRow}>
+          <Text style={styles.headingText}>
             Mutual Funds
           </Text>
           <ScrollView
@@ -749,17 +769,11 @@ const GenieGrants = () => {
           </ScrollView>
         </View>
 
-        <View style={{ backgroundColor: "#a37bf4", paddingBottom: 15 }}>
-          <Text
-            style={{
-              color: "black",
-              marginTop: 15,
-              marginLeft: 10,
-              fontWeight: "bold",
-              fontSize: 23,
-              marginBottom: 5,
-            }}
-          >
+        {/* DIVIDER */}
+        <View style={styles.divider}/>
+
+        <View style={styles.offerRow}>
+          <Text style={styles.headingText}>
             Pension Schemes
           </Text>
           <ScrollView
@@ -886,6 +900,9 @@ const GenieGrants = () => {
           </ScrollView>
         </View>
 
+        {/* DIVIDER */}
+        <View style={styles.divider}/>
+
         <View
           style={{
             width: "100%",
@@ -894,7 +911,7 @@ const GenieGrants = () => {
             height: 50,
             paddingTop: 10,
           }}
-        >
+          >
           <View style={{ justifyContent: "center", alignItems: "center" }}>
             <Text style={{ fontSize: 10 }}>Terms & Conditions apply</Text>
           </View>
@@ -914,6 +931,11 @@ const styles = StyleSheet.create({
     flex: 4,
     justifyContent: "flex-start",
     alignItems: "flex-start",
+    borderWidth:1.5, 
+    borderRightColor:'#5e17eb',
+    borderLeftColor:'#5e17eb',
+    borderTopColor:'#a37bf4',
+    borderBottomColor:'#a37bf4'
   },
   shadowProp: {
     shadowColor: "#17171",
@@ -925,6 +947,22 @@ const styles = StyleSheet.create({
     elevation: 20,
     shadowColor: "#52006A",
   },
+  offerRow: {
+    backgroundColor: "#fff",
+    paddingBottom: 15,
+  },
+  headingText: {
+    fontWeight: "bold",
+    fontSize: 23,
+    marginBottom: 7,
+    marginTop: 15,
+    marginLeft: 10,
+  },
+  divider: {
+    height: 2.5,
+    backgroundColor: "#5e17eb",
+    marginBottom: 5,
+  }
 });
 
 export default GenieGrants;

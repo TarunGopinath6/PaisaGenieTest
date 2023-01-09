@@ -32,7 +32,7 @@ const Splash = () => {
       <View
         style={[
           styles.nameWrapper,
-          { flex: 1, justifyContent: "flex-start", backgroundColor: "#a37bf4" },
+          { flex: 1, justifyContent: "flex-start", backgroundColor: "#5e17eb" },
         ]}
       >
         <Text
@@ -42,7 +42,7 @@ const Splash = () => {
             fontFamily: "sans-serif",
           }}
         >
-          One-stop Financial Genie at Your Fingertips
+          One-stop financial genie at your fingertips
         </Text>
       </View>
 
@@ -64,12 +64,12 @@ const styles = StyleSheet.create({
     flex: 7,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#a37bf4",
+    backgroundColor: "#5e17eb",
   },
   // 0779f3
   nameWrapper: {
     flex: 2,
-    backgroundColor: "#a37bf4",
+    backgroundColor: "#5e17eb",
     width: "100%",
     height: "100%",
     justifyContent: "flex-end",

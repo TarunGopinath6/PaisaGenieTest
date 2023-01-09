@@ -10,9 +10,8 @@ import {
   VictoryTheme,
 } from "victory-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-
-import DropdownComponent1 from "../components/DropdownComponent1"
-import DropdownComponent2 from "../components/DropdownComponent2"
+import DropdownComponent1 from '../Components/DropdownComponent1';
+import DropdownComponent2 from '../Components/DropdownComponent2';
 
 import {
   View,
@@ -30,25 +29,12 @@ import {
   Pressable,
 } from "react-native";
 
-import BannerTop from "../assets/Images/BannerTop.png";
+import BannerTop from "../assets/Images/background2.png";
 
 
 const MyGenie = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
-
-  function showUnits(num){
-    if(num<100000){
-        console.log((num/1000).toFixed(2) + "K");
-    }
-    else if(num>=100000 && num<10000000){
-        console.log((num/100000).toFixed(2) + "L");
-    } 
-    else if(num>=10000000){
-        console.log((num/10000000).toFixed(2) + "C");
-    }
-  }
-
   return (
     <SafeAreaView style={{ marginBottom: 55 }}>
       <ScrollView>
@@ -125,7 +111,7 @@ const MyGenie = () => {
 
         {/*HEADER BACKGROUND*/}
         <ImageBackground
-          source={require("../assets/Images/1.png")}
+          source={require("../assets/Images/background.png")}
           resizeMode="cover"
           style={{
             justifyContent: "flex-start",
@@ -191,7 +177,7 @@ const MyGenie = () => {
             </View>
             <View
               style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
+              >
               <View style={{ marginBottom: 8 }}>
                 <Text style={{ fontSize: 33 }}>2.06 L</Text>
                 <Text
@@ -307,7 +293,7 @@ const MyGenie = () => {
             </View>
             <View
               style={[styles.card, { height: 150, width: 150, margin: 10 }]}
-            >
+              >
               <Text style={{ fontSize: 33 }}>35 K</Text>
               <Text style={{ fontSize: 14, marginBottom: 17, color: "gray" }}>
                 Rs.35,000
@@ -364,7 +350,7 @@ const MyGenie = () => {
                 <Ionicons name="cube" size={17} style={styles.OptionIcon} />
               </View>
               <View style={{ flex: 3 }}>
-                <Text style={{ color: "#9064E8", fontSize: 14 }}>
+                <Text style={{ color: "#5e17eb", fontSize: 14 }}>
                   BANK ACCOUNT
                 </Text>
               </View>
@@ -379,7 +365,7 @@ const MyGenie = () => {
                 <Ionicons name="book" size={17} style={styles.OptionIcon} />
               </View>
               <View style={{ flex: 3 }}>
-                <Text style={{ color: "#9064E8", fontSize: 14 }}>DEPOSITS</Text>
+                <Text style={{ color: "#5e17eb", fontSize: 14 }}>DEPOSITS</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -401,7 +387,7 @@ const MyGenie = () => {
                 <Ionicons name="business" size={17} style={styles.OptionIcon} />
               </View>
               <View style={{ flex: 3 }}>
-                <Text style={{ color: "#9064E8", fontSize: 14 }}>EQUITIES</Text>
+                <Text style={{ color: "#5e17eb", fontSize: 14 }}>EQUITIES</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity
@@ -418,7 +404,7 @@ const MyGenie = () => {
                 />
               </View>
               <View style={{ flex: 3 }}>
-                <Text style={{ color: "#9064E8", fontSize: 14 }}>
+                <Text style={{ color: "#5e17eb", fontSize: 14 }}>
                   INSURANCE
                 </Text>
               </View>
@@ -446,7 +432,7 @@ const MyGenie = () => {
                 />
               </View>
               <View style={{ flex: 3 }}>
-                <Text style={{ color: "#9064E8", fontSize: 14 }}>
+                <Text style={{ color: "#5e17eb", fontSize: 14 }}>
                   MUTUAL FUNDS
                 </Text>
               </View>
@@ -461,7 +447,7 @@ const MyGenie = () => {
                 <Ionicons name="bookmark" size={17} style={styles.OptionIcon} />
               </View>
               <View style={{ flex: 3 }}>
-                <Text style={{ color: "#9064E8", fontSize: 14 }}>
+                <Text style={{ color: "#5e17eb", fontSize: 14 }}>
                   PENSION SCHEME
                 </Text>
               </View>
@@ -485,7 +471,7 @@ const MyGenie = () => {
                 <Ionicons name="card" size={17} style={styles.OptionIcon} />
               </View>
               <View style={{ flex: 3 }}>
-                <Text style={{ color: "#9064E8", fontSize: 14 }}>
+                <Text style={{ color: "#5e17eb", fontSize: 14 }}>
                   RECURRING DEP.
                 </Text>
               </View>
@@ -500,7 +486,7 @@ const MyGenie = () => {
                 <Ionicons name="wallet" size={17} style={styles.OptionIcon} />
               </View>
               <View style={{ flex: 3 }}>
-                <Text style={{ color: "#9064E8", fontSize: 14 }}>
+                <Text style={{ color: "#5e17eb", fontSize: 14 }}>
                   TERM DEPOSIT
                 </Text>
               </View>

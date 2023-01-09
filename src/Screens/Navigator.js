@@ -12,13 +12,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import useIdentStore from "../storages/IdentStore";
-
 const MyGenie = () => {
-
   const navigation = useNavigation();
-
-  const {trackingID, referenceID} = useIdentStore();
 
   const SliderNav = () => {
     navigation.navigate("Slider", {});
@@ -38,9 +33,29 @@ const MyGenie = () => {
   const TestNav = () => {
     navigation.navigate("Test", {});
   };
-
-  const LoadtNav = () => {
-    navigation.navigate("Loading", {});
+  const ProfileNav = () => {
+    navigation.navigate("Profile", {});
+  };
+  const GenieGrantsNav = () => {
+    navigation.navigate("GenieGrants", {});
+  };
+  const GenieSaysNav = () => {
+    navigation.navigate("GenieSays", {});
+  };
+  const GenieGrowsNav = () => {
+    navigation.navigate("GenieGrows", {});
+  };
+  const GenieGivesNav = () => {
+    navigation.navigate("GenieGives", {});
+  };
+  const BankAccountNav = () => {
+    navigation.navigate("BankAccount", {});
+  };
+  const DepositsNav = () => {
+    navigation.navigate("Deposits", {});
+  };
+  const GenieProtectsNav = () => {
+    navigation.navigate("GenieProtects", {});
   };
 
   return (
@@ -52,8 +67,6 @@ const MyGenie = () => {
         height: "100%",
       }}
     >
-      <Text>{trackingID} {referenceID}</Text>
-
       <View style={styles.ButtonContainer}>
         <TouchableOpacity onPress={AuthNav} style={styles.Button}>
           <Text style={{ color: "white", fontSize: 15 }}>Auth</Text>
@@ -84,22 +97,47 @@ const MyGenie = () => {
           <Text style={{ color: "white", fontSize: 15 }}>TEST</Text>
         </TouchableOpacity>
       </View>
-
       <View style={styles.ButtonContainer}>
-        <TouchableOpacity onPress={LoadtNav} style={styles.Button}>
-          <Text style={{ color: "white", fontSize: 15 }}>Loading</Text>
+        <TouchableOpacity onPress={ProfileNav} style={styles.Button}>
+          <Text style={{ color: "white", fontSize: 15 }}>Profile</Text>
         </TouchableOpacity>
       </View>
-
       <View style={styles.ButtonContainer}>
-        <TouchableOpacity onPress={() => {console.log(trackingID); console.log(referenceID);}} style={styles.Button}>
-          <Text style={{ color: "white", fontSize: 15 }}>Console print Ident</Text>
+        <TouchableOpacity onPress={GenieGrantsNav} style={styles.Button}>
+          <Text style={{ color: "white", fontSize: 15 }}>GenieGrants</Text>
         </TouchableOpacity>
       </View>
-
-
+      <View style={styles.ButtonContainer}>
+        <TouchableOpacity onPress={GenieSaysNav} style={styles.Button}>
+          <Text style={{ color: "white", fontSize: 15 }}>GenieSays</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.ButtonContainer}>
+        <TouchableOpacity onPress={GenieGrowsNav} style={styles.Button}>
+          <Text style={{ color: "white", fontSize: 15 }}>GenieGrows</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.ButtonContainer}>
+        <TouchableOpacity onPress={GenieGivesNav} style={styles.Button}>
+          <Text style={{ color: "white", fontSize: 15 }}>GenieGives</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.ButtonContainer}>
+        <TouchableOpacity onPress={BankAccountNav} style={styles.Button}>
+          <Text style={{ color: "white", fontSize: 15 }}>BankAccount</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.ButtonContainer}>
+        <TouchableOpacity onPress={DepositsNav} style={styles.Button}>
+          <Text style={{ color: "white", fontSize: 15 }}>Deposits</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.ButtonContainer}>
+        <TouchableOpacity onPress={GenieProtectsNav} style={styles.Button}>
+          <Text style={{ color: "white", fontSize: 15 }}>GenieProtects</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
-    
   );
 };
 
