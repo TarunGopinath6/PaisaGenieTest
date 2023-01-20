@@ -4,6 +4,7 @@ import { Slider } from "react-native";
 
 import DropdownMoratorium from "../components/DropdownMoratorium";
 
+import useEMIs from "../utils/internal/EMI";
 
 import {
   View,
@@ -18,6 +19,7 @@ import {
   Modal,
   Alert,
   Pressable,
+  ActivityIndicator
 } from "react-native";
 
 const GenieSays = () => {
@@ -26,6 +28,25 @@ const GenieSays = () => {
 
   const [debtData, setDebtData] = useState(false);
   const [morData, setMorData] = useState(false);
+
+  const [next, setNext] = useState(false);
+  const [data, setData] = useState([]);
+
+  const { getEMIs, setEMIs, loading } = useEMIs();
+
+  const [value1, setValue1] = useState(null);
+  const [value2, setValue2] = useState(null);
+  const [value3, setValue3] = useState(null);
+
+  useEffect(() => {
+
+    async function fetchData() {
+      let response = await getEMIs();
+      setData(response['data']);
+    }
+
+    fetchData();
+  }, [reload])
 
   return (
     <SafeAreaView style={{ paddingBottom: 55 }}>
