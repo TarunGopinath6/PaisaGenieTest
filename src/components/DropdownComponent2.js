@@ -4,9 +4,9 @@ import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 const data = [
-  { label: "Less than", value: "1" },
-  { label: "More than", value: "2" },
-  { label: "Equal to", value: "3" },
+  { label: "Less than", value: "Less than" },
+  { label: "More than", value: "More than" },
+  { label: "Equal to", value: "Equal to" },
 ];
 
 const DropdownComponent2 = ({ value, setValue }) => {

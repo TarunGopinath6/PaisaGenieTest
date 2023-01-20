@@ -1,4 +1,5 @@
 import axios from 'axios';
+import QueryString from 'qs';
 
 // axios.defaults.headers.common["API_KEY"] = "915d5866ebcdf53684fd37128a"
 
@@ -9,7 +10,7 @@ class API {
   async getGoals(phone) {
 
     try {
-      const response = await axios.get(baseURL + '/goals/' + phone);
+      const response = await axios.get(baseURL + '/info/' + phone);
 
       return { "code": response.status, "data": response.data };
 
@@ -33,12 +34,18 @@ class API {
 
   }
 
-  async setGoals(phone) {
-
+  async setGoals(phone, value1, value2, value3, value4) {
+  
     try {
-      const response = await axios.post(baseURL + '/goals/' + phone,
-        {
-
+      const response = await axios.post(baseURL + '/info/' + phone,
+        QueryString.stringify({
+          "action": "1",
+          "compare": "1",
+          "value": "2"
+        }), {
+          headers: {
+            "Content-Type": 'application/x-www-form-urlencoded'
+          }
         }
       );
 

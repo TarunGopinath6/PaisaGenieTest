@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import API from "./../../API/internal/Goals"
-import useIdentStore from "../storages/IdentStore";
+import useIdentStore from "../../storages/IdentStore";
 
 
 export default function useGoals() {
@@ -23,10 +23,12 @@ export default function useGoals() {
         },
 
 
-        async setGoals() {
+        async setGoals(value1, value2, value3, value4) {
+            console.log(value1, value2, value3, value4);
             setLoading(true);
-            const response = await apiObject.setGoals(phone);
+            const response = await apiObject.setGoals(phone, value1, value2, value3, value4);
             setLoading(false);
+            console.log(response)
             return response
         },
 

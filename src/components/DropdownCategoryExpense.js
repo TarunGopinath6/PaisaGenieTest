@@ -4,12 +4,18 @@ import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 const data = [
-  { label: "Earning", value: "Earning" },
-  { label: "Expenditure", value: "Expenditure" },
-  { label: "Investment", value: "Investment" },
+  { label: "Salary", value: "Salary" },
+  { label: "Credit Card Payment", value: "Credit Card Payment" },
+  { label: "CASH Withdrawals", value: "CASH Withdrawals" },
+  { label: "Investment Income", value: "Investment Income" },
+  { label: "Investment Expense", value: "Investment Expense" },
+  { label: "Gambling & Betting", value: "Gambling & Betting" },
+  { label: "Purchase by Card", value: "Purchase by Card" },
+  { label: "Merchant Expenditure", value: "Merchant Expenditure" },
+  { label: "Food", value: "Food" },
 ];
 
-const DropdownComponent1 = ({ value, setValue }) => {
+const DropdownComponentExp = ({ value, setValue }) => {
   const [isFocus, setIsFocus] = useState(false);
 
   const renderLabel = () => {
@@ -52,7 +58,7 @@ const DropdownComponent1 = ({ value, setValue }) => {
   );
 };
 
-export default DropdownComponent1;
+export default DropdownComponentExp;
 
 const styles = StyleSheet.create({
   container: {

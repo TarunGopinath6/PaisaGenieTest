@@ -13,8 +13,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import DropdownComponent1 from "../components/DropdownComponent1";
 import DropdownComponent2 from "../components/DropdownComponent2";
+import DropDownComponentExp from "../components/DropdownCategoryExpense";
 
-import loadingAnim from "../assets/loading/internal.json"
+// import loadingAnim from "../assets/loading/internal.gif";
 
 import {
   View,
@@ -50,6 +51,7 @@ const MyGenie = () => {
   const [value1, setValue1] = useState(null);
   const [value2, setValue2] = useState(null);
   const [value3, setValue3] = useState(null);
+  const [value4, setValue4] = useState(null);
 
   useEffect(() => {
 
@@ -92,13 +94,13 @@ const MyGenie = () => {
                     <DropdownComponent1 value={value1} setValue={setValue1}/>
                     {/* NEW COMPONENT TO BE DYNAMICALLY GENERATED, WITH EACH CATEGORY FROM COMPLETECATEGORYWISE ANALYSIS */}
                     {/* THE ADD BUTTON FOR NOW, CLOSES THE MODAL, BUT SHOULD ADD A NEW GOAL */}
-                    <DropdownComponent1 value={value2} setValue={setValue2}/>
+                    <DropDownComponentExp value={value2} setValue={setValue2}/>
                     {/* DICTATES LESS/MORE/EQUAL */}
                     <DropdownComponent2 value={value3} setValue={setValue3}/>
                   </View>
                   <View style={{ width: '90%', justifyContent: 'center', marginLeft: 15, margin: 0, padding: 0 }}>
                     <View style={[styles.textInputWrapper, { marginTop: "8%" }]}>
-                      <TextInput placeholder="Value" clearTextOnFocus={true} />
+                      <TextInput placeholder="Value" clearTextOnFocus={true} value={value4} onChangeText={setValue4}/>
                     </View>
                   </View>
 
@@ -124,7 +126,7 @@ const MyGenie = () => {
                       }}
                       onPress={() => { 
                         setModalVisible(!modalVisible); 
-                        setGoals(value1, value2, value3);
+                        setGoals(value1, value2, value3, value4);
                         setReload(reload + 1);
                       }}
                     >
@@ -892,15 +894,11 @@ const MyGenie = () => {
           </View>
 
           {loading === true ?
-            <AnimatedLoader
-              visible={true}
-              source={loadingAnim}
-              overlayColor="rgba(255,255,255,1)"
-              animationStyle={styles.lottie}
-              speed={1}
-            >
+          <ScrollView horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          styles={{ backgroundColor: "white", marginTop: 10 }}>
               <Text>Fetching Data from Server...</Text>
-            </AnimatedLoader>
+            </ScrollView>
 
             :
             <ScrollView horizontal={true}
@@ -933,16 +931,18 @@ const MyGenie = () => {
                             width: "100%",
                           }}
                         >
-                          <Text style={{ fontSize: 33 }}> {obj.rate} </Text>
+                          <Text style={{ fontSize: 33 }}>
+                             {{0: 10, 1: 30, 2: 60, 3: 100}[((obj.value + obj.action.length) % 4)]}% 
+                          </Text>
                         </View>
                         <View
                           style={{
                             flex: 1,
-                            width: "40%",
+                            width: {0: "10%", 1: "30%", 2: "60%", 3: "100%"}[((obj.value + obj.action.length) % 4)],
                             height: "100%",
                             borderTopRightRadius: 35,
                             borderBottomRightRadius: 35,
-                            backgroundColor: "green",
+                            backgroundColor: {0: "blue", 1: "green", 2: "red", 3: "yellow"}[((obj.value + obj.action.length) % 4)],
                           }}
                         ></View>
                         <View
@@ -957,7 +957,7 @@ const MyGenie = () => {
                           <Text
                             style={{ fontWeight: "bold", fontSize: 17, color: "black" }}
                           >
-                            {obj.type}
+                            {obj.category}
                           </Text>
                         </View>
                         <View
@@ -970,7 +970,7 @@ const MyGenie = () => {
                           }}
                         >
                           <Text style={{ fontSize: 14, color: "black" }}>
-                            Spend {obj.compare} Rs. {obj.amount} on {obj.type}
+                            Spend {obj.compare} Rs. {obj.value} on {obj.action}
                           </Text>
                         </View>
                       </View>

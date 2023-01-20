@@ -46,7 +46,7 @@ const Loading = () => {
 
             {dataStatus === false ? <></> :
                 <Fragment>
-                    {responseStatus === false ?
+                    {true === false ?
                         <View style={styles.statusWrapper}>
                             <Icon name="close" size={200} color="#C21010" />
                             <Text style={{ fontSize: 30 }}> Consent Retrival Failed!</Text>
