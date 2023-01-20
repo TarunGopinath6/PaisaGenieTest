@@ -18,11 +18,34 @@ import {
   Alert,
   Modal,
   Pressable,
+  ActivityIndicator
 } from "react-native";
+
+import useLoans from "../utils/internal/Loans";
 
 const GenieGives = () => {
 
   const [dataVis, setDataVis] = useState(false);
+
+  const [reload, setReload] = useState(0);
+  const [data, setData] = useState([]);
+
+  const { getLoans, setLoans, loading } = useLoans();
+
+  const [value1, setValue1] = useState(null);
+  const [value2, setValue2] = useState(null);
+  const [value3, setValue3] = useState(null);
+
+  useEffect(() => {
+
+    async function fetchData() {
+      let response = await getLoans();
+      setData(response['data']);
+    }
+
+    fetchData();
+  }, [reload])
+
 
   return (
     <SafeAreaView>
@@ -109,13 +132,13 @@ const GenieGives = () => {
               Enter Info
             </Text>
             <View style={{ width: "100%", marginTop: 15 }}>
-              <DropdownLoan />
+              <DropdownLoan value={value1} setValue={setValue1} />
             </View>
             <View style={[styles.textInputWrapper, { marginTop: "4%" }]}>
-              <TextInput placeholder="Loan Amount" clearTextOnFocus={true} />
+              <TextInput placeholder="Loan Amount" clearTextOnFocus={true} value={value2} onChangeText={setValue2} />
             </View>
             <View style={styles.textInputWrapper}>
-              <TextInput placeholder="Tenure" clearTextOnFocus={true} />
+              <TextInput placeholder="Tenure" clearTextOnFocus={true} value={value3} onChangeText={setValue3} />
             </View>
             <View
               style={{
@@ -135,290 +158,300 @@ const GenieGives = () => {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-                onPress={()=>{setDataVis(true);}}
+                onPress={() => {
+                  setLoans(value1, value2, value3);
+                  setReload(reload + 1);
+                }}
               >
                 <Text style={{ color: "white", fontSize: 15 }}>Continue</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
-        {dataVis===true &&
-        <View style={{ width: "100%", height: 350, marginTop: 30 }}>
-          <View
-            style={{
-              justifyContent: "space-between",
-              marginLeft: 25,
-              marginRight: 25,
-              alignItems: "space-between",
-              flexDirection: "row",
-            }}
-          >
-            <Text
-              style={{ fontWeight: "bold", fontSize: 23, marginBottom: 10 }}
-            >
-              Loan offers
-            </Text>
+
+        {loading === true ?
+          <View style={[styles.container, styles.horizontal]}>
+            <ActivityIndicator size="large" />
           </View>
-
-           <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            styles={{ backgroundColor: "white", marginTop: 10 }}
-          >
+          : data[0] === undefined ? 
+            <></>
+          :
+          <View style={{ width: "100%", height: 350, marginTop: 30 }}>
             <View
-              style={[
-                styles.goalCard,
-                {
-                  height: 300,
-                  width: 150,
-                  margin: 10,
-                  borderWidth: 2,
-                  borderColor: "#bd8c5c",
-                  flexDirection: "column",
-                },
-              ]}
+              style={{
+                justifyContent: "space-between",
+                marginLeft: 25,
+                marginRight: 25,
+                alignItems: "space-between",
+                flexDirection: "row",
+              }}
+            >
+              <Text
+                style={{ fontWeight: "bold", fontSize: 23, marginBottom: 10 }}
+              >
+                Loan offers
+              </Text>
+            </View>
+
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              styles={{ backgroundColor: "white", marginTop: 10 }}
             >
               <View
-                style={{
-                  flex: 1.8,
-                  marginTop: 10,
-                  marginBottom: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                }}
-                overflow="hidden"
-              >
-                <Image
-                  source={require("../assets/Images/bob.png")}
-                  resizeMode="contain"
-                  style={{ width: 70 }}
-                ></Image>
-              </View>
-
-              {/* DIVIDER */}
-              <View
-                style={{
-                  backgroundColor: "#bd8c5c",
-                  width: "100%",
-                  flex: 0.05,
-                  marginTop: 7,
-                }}
-              />
-              <View
                 style={[
-                  styles.statsWrapper,
-                  { flex: 4.2, width: "100%", height: "100%" },
+                  styles.goalCard,
+                  {
+                    height: 300,
+                    width: 150,
+                    margin: 10,
+                    borderWidth: 2,
+                    borderColor: "#bd8c5c",
+                    flexDirection: "column",
+                  },
                 ]}
               >
-                <Text style={styles.statsValText}>2,00,000</Text>
-                <Text style={styles.statsValText}>8.4%</Text>
-                <Text style={styles.statsValText}>36</Text>
-                <Text style={{ fontSize: 15 }}>NEGOTIABLE</Text>
-              </View>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#3CB043",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 0,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>View</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#FF2E2E",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 8,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
-              </TouchableOpacity>
-            </View>
-            <View
-              style={[
-                styles.goalCard,
-                {
-                  height: 300,
-                  width: 150,
-                  margin: 10,
-                  borderWidth: 2,
-                  borderColor: "#bd8c5c",
-                  flexDirection: "column",
-                },
-              ]}
-            >
-              <View
-                style={{
-                  flex: 1.8,
-                  marginTop: 10,
-                  marginBottom: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                }}
-                overflow="hidden"
-              >
-                <Image
-                  source={require("../assets/Images/hdfc.png")}
-                  resizeMode="contain"
-                  style={{ width: 65 }}
-                ></Image>
-              </View>
+                <View
+                  style={{
+                    flex: 1.8,
+                    marginTop: 10,
+                    marginBottom: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                  overflow="hidden"
+                >
+                  <Image
+                    source={require("../assets/Images/bob.png")}
+                    resizeMode="contain"
+                    style={{ width: 70 }}
+                  ></Image>
+                </View>
 
-              {/* DIVIDER */}
-              <View
-                style={{
-                  backgroundColor: "#bd8c5c",
-                  width: "100%",
-                  flex: 0.05,
-                  marginTop: 7,
-                }}
-              />
+                {/* DIVIDER */}
+                <View
+                  style={{
+                    backgroundColor: "#bd8c5c",
+                    width: "100%",
+                    flex: 0.05,
+                    marginTop: 7,
+                  }}
+                />
+                <View
+                  style={[
+                    styles.statsWrapper,
+                    { flex: 4.2, width: "100%", height: "100%" },
+                  ]}
+                >
+                  <Text style={styles.statsValText}>{data[0]['bob']['amount']}</Text>
+                  <Text style={styles.statsValText}>{data[0]['bob']['interest']}</Text>
+                  <Text style={styles.statsValText}>{data[0]['bob']['tenure']}</Text>
+                  <Text style={{ fontSize: 15 }}>{data[0]['bob']['condition']}</Text>
+                </View>
+                <TouchableOpacity
+                  style={{
+                    width: "80%",
+                    backgroundColor: "#3CB043",
+                    margin: 10,
+                    marginLeft: 14,
+                    marginTop: 7,
+                    marginBottom: 0,
+                    borderRadius: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: 1,
+                  }}
+                >
+                  <Text style={{ color: "white", fontSize: 13 }}>View</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    width: "80%",
+                    backgroundColor: "#FF2E2E",
+                    margin: 10,
+                    marginLeft: 14,
+                    marginTop: 7,
+                    marginBottom: 8,
+                    borderRadius: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: 1,
+                  }}
+                >
+                  <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
+                </TouchableOpacity>
+              </View>
               <View
                 style={[
-                  styles.statsWrapper,
-                  { flex: 4.2, width: "100%", height: "100%" },
+                  styles.goalCard,
+                  {
+                    height: 300,
+                    width: 150,
+                    margin: 10,
+                    borderWidth: 2,
+                    borderColor: "#bd8c5c",
+                    flexDirection: "column",
+                  },
                 ]}
               >
-                <Text style={styles.statsValText}>1,80,000</Text>
-                <Text style={styles.statsValText}>7.5%</Text>
-                <Text style={styles.statsValText}>36</Text>
-                <Text style={{ fontSize: 15 }}>NEGOTIABLE</Text>
-              </View>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#3CB043",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 0,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>View</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#FF2E2E",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 8,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
-              </TouchableOpacity>
-            </View>
-            <View
-              style={[
-                styles.goalCard,
-                {
-                  height: 300,
-                  width: 150,
-                  margin: 10,
-                  borderWidth: 2,
-                  borderColor: "#bd8c5c",
-                  flexDirection: "column",
-                },
-              ]}
-            >
-              <View
-                style={{
-                  flex: 1.8,
-                  marginTop: 10,
-                  marginBottom: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                }}
-                overflow="hidden"
-              >
-                <Image
-                  source={require("../assets/Images/sbi.png")}
-                  resizeMode="contain"
-                  style={{ width: 100 }}
-                ></Image>
-              </View>
+                <View
+                  style={{
+                    flex: 1.8,
+                    marginTop: 10,
+                    marginBottom: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                  overflow="hidden"
+                >
+                  <Image
+                    source={require("../assets/Images/hdfc.png")}
+                    resizeMode="contain"
+                    style={{ width: 65 }}
+                  ></Image>
+                </View>
 
-              {/* DIVIDER */}
-              <View
-                style={{
-                  backgroundColor: "#bd8c5c",
-                  width: "100%",
-                  flex: 0.05,
-                  marginTop: 7,
-                }}
-              />
+                {/* DIVIDER */}
+                <View
+                  style={{
+                    backgroundColor: "#bd8c5c",
+                    width: "100%",
+                    flex: 0.05,
+                    marginTop: 7,
+                  }}
+                />
+                <View
+                  style={[
+                    styles.statsWrapper,
+                    { flex: 4.2, width: "100%", height: "100%" },
+                  ]}
+                >
+                  <Text style={styles.statsValText}>{data[0]['hdfc']['amount']}</Text>
+                  <Text style={styles.statsValText}>{data[0]['hdfc']['interest']}</Text>
+                  <Text style={styles.statsValText}>{data[0]['hdfc']['tenure']}</Text>
+                  <Text style={{ fontSize: 15 }}>{data[0]['hdfc']['condition']}</Text>
+                </View>
+                <TouchableOpacity
+                  style={{
+                    width: "80%",
+                    backgroundColor: "#3CB043",
+                    margin: 10,
+                    marginLeft: 14,
+                    marginTop: 7,
+                    marginBottom: 0,
+                    borderRadius: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: 1,
+                  }}
+                >
+                  <Text style={{ color: "white", fontSize: 13 }}>View</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    width: "80%",
+                    backgroundColor: "#FF2E2E",
+                    margin: 10,
+                    marginLeft: 14,
+                    marginTop: 7,
+                    marginBottom: 8,
+                    borderRadius: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: 1,
+                  }}
+                >
+                  <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
+                </TouchableOpacity>
+              </View>
               <View
                 style={[
-                  styles.statsWrapper,
-                  { flex: 4.2, width: "100%", height: "100%" },
+                  styles.goalCard,
+                  {
+                    height: 300,
+                    width: 150,
+                    margin: 10,
+                    borderWidth: 2,
+                    borderColor: "#bd8c5c",
+                    flexDirection: "column",
+                  },
                 ]}
               >
-                <Text style={styles.statsValText}>2,00,000</Text>
-                <Text style={styles.statsValText}>8.7%</Text>
-                <Text style={styles.statsValText}>30</Text>
-                <Text style={{ fontSize: 15 }}>NEGOTIABLE</Text>
+                <View
+                  style={{
+                    flex: 1.8,
+                    marginTop: 10,
+                    marginBottom: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                  overflow="hidden"
+                >
+                  <Image
+                    source={require("../assets/Images/sbi.png")}
+                    resizeMode="contain"
+                    style={{ width: 100 }}
+                  ></Image>
+                </View>
+
+                {/* DIVIDER */}
+                <View
+                  style={{
+                    backgroundColor: "#bd8c5c",
+                    width: "100%",
+                    flex: 0.05,
+                    marginTop: 7,
+                  }}
+                />
+                <View
+                  style={[
+                    styles.statsWrapper,
+                    { flex: 4.2, width: "100%", height: "100%" },
+                  ]}
+                >
+                  <Text style={styles.statsValText}>{data[0]['sbi']['amount']}</Text>
+                  <Text style={styles.statsValText}>{data[0]['sbi']['interest']}</Text>
+                  <Text style={styles.statsValText}>{data[0]['sbi']['tenure']}</Text>
+                  <Text style={{ fontSize: 15 }}>{data[0]['sbi']['condition']}</Text>
+                </View>
+                <TouchableOpacity
+                  style={{
+                    width: "80%",
+                    backgroundColor: "#3CB043",
+                    margin: 10,
+                    marginLeft: 14,
+                    marginTop: 7,
+                    marginBottom: 0,
+                    borderRadius: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: 1,
+                  }}
+                >
+                  <Text style={{ color: "white", fontSize: 13 }}>View</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    width: "80%",
+                    backgroundColor: "#FF2E2E",
+                    margin: 10,
+                    marginLeft: 14,
+                    marginTop: 7,
+                    marginBottom: 8,
+                    borderRadius: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: 1,
+                  }}
+                >
+                  <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#3CB043",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 0,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>View</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#FF2E2E",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 8,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        </View>}
+            </ScrollView>
+          </View>}
         <View
           style={{
             paddingTop: "5%",

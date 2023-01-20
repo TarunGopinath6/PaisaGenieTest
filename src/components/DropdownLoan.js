@@ -11,8 +11,7 @@ const data = [
   { label: "Business", value: "5" },
 ];
 
-const DropdownLoan = () => {
-  const [value, setValue] = useState(null);
+const DropdownLoan = ({ value, setValue}) => {
   const [isFocus, setIsFocus] = useState(false);
 
   const renderLabel = () => {
