@@ -39,9 +39,10 @@ class API {
     try {
       const response = await axios.post(baseURL + '/info/' + phone,
         QueryString.stringify({
-          "action": "1",
-          "compare": "1",
-          "value": "2"
+          "action": value1,
+          "category": value2,
+          "compare": value3,
+          "value": value4
         }), {
           headers: {
             "Content-Type": 'application/x-www-form-urlencoded'

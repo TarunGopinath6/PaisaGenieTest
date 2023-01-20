@@ -31,6 +31,7 @@ import {
   Alert,
   Modal,
   Pressable,
+  ActivityIndicator
 } from "react-native";
 
 import BannerTop from "../assets/Images/background2.png";
@@ -91,16 +92,16 @@ const MyGenie = () => {
                     Enter Info
                   </Text>
                   <View style={{ width: '90%' }}>
-                    <DropdownComponent1 value={value1} setValue={setValue1}/>
+                    <DropdownComponent1 value={value1} setValue={setValue1} />
                     {/* NEW COMPONENT TO BE DYNAMICALLY GENERATED, WITH EACH CATEGORY FROM COMPLETECATEGORYWISE ANALYSIS */}
                     {/* THE ADD BUTTON FOR NOW, CLOSES THE MODAL, BUT SHOULD ADD A NEW GOAL */}
-                    <DropDownComponentExp value={value2} setValue={setValue2}/>
+                    <DropDownComponentExp value={value2} setValue={setValue2} />
                     {/* DICTATES LESS/MORE/EQUAL */}
-                    <DropdownComponent2 value={value3} setValue={setValue3}/>
+                    <DropdownComponent2 value={value3} setValue={setValue3} />
                   </View>
                   <View style={{ width: '90%', justifyContent: 'center', marginLeft: 15, margin: 0, padding: 0 }}>
                     <View style={[styles.textInputWrapper, { marginTop: "8%" }]}>
-                      <TextInput placeholder="Value" clearTextOnFocus={true} value={value4} onChangeText={setValue4}/>
+                      <TextInput placeholder="Value" clearTextOnFocus={true} value={value4} onChangeText={setValue4} />
                     </View>
                   </View>
 
@@ -124,8 +125,8 @@ const MyGenie = () => {
                         alignItems: "center",
                         marginRight: 5
                       }}
-                      onPress={() => { 
-                        setModalVisible(!modalVisible); 
+                      onPress={() => {
+                        setModalVisible(!modalVisible);
                         setGoals(value1, value2, value3, value4);
                         setReload(reload + 1);
                       }}
@@ -894,12 +895,9 @@ const MyGenie = () => {
           </View>
 
           {loading === true ?
-          <ScrollView horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          styles={{ backgroundColor: "white", marginTop: 10 }}>
-              <Text>Fetching Data from Server...</Text>
-            </ScrollView>
-
+            <View style={[styles.container, styles.horizontal]}>
+              <ActivityIndicator size="large" />
+            </View>
             :
             <ScrollView horizontal={true}
               showsHorizontalScrollIndicator={false}
@@ -907,7 +905,7 @@ const MyGenie = () => {
               {
                 data.map((obj) => {
                   return (
-                    <Fragment>
+                    <Fragment key={obj['_id']['$oid']}>
                       <View
                         style={[
                           styles.goalCard,
@@ -932,17 +930,17 @@ const MyGenie = () => {
                           }}
                         >
                           <Text style={{ fontSize: 33 }}>
-                             {{0: 10, 1: 30, 2: 60, 3: 100}[((obj.value + obj.action.length) % 4)]}% 
+                            {{ 0: 10, 1: 30, 2: 60, 3: 100 }[((obj.value + reload) % 4)]}%
                           </Text>
                         </View>
                         <View
                           style={{
                             flex: 1,
-                            width: {0: "10%", 1: "30%", 2: "60%", 3: "100%"}[((obj.value + obj.action.length) % 4)],
+                            width: { 0: "10%", 1: "30%", 2: "60%", 3: "100%" }[((obj.value + reload) % 4)],
                             height: "100%",
                             borderTopRightRadius: 35,
                             borderBottomRightRadius: 35,
-                            backgroundColor: {0: "blue", 1: "green", 2: "red", 3: "yellow"}[((obj.value + obj.action.length) % 4)],
+                            backgroundColor: { 0: "blue", 1: "green", 2: "red", 3: "yellow" }[((obj.value + reload) % 4)],
                           }}
                         ></View>
                         <View
@@ -981,7 +979,7 @@ const MyGenie = () => {
             </ScrollView>
           }
 
-{/* 
+          {/* 
           <ScrollView
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -1404,6 +1402,15 @@ const styles = StyleSheet.create({
   lottie: {
     width: 100,
     height: 100
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
   },
 });
 
