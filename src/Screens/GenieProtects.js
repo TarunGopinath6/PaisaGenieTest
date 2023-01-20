@@ -29,7 +29,7 @@ const GenieProtects = () => {
 
   const [dataVis, setDataVis] = useState(false);
 
-  
+
   const [reload, setReload] = useState(0);
   const [data, setData] = useState([]);
 
@@ -135,18 +135,18 @@ const GenieProtects = () => {
               Enter Info
             </Text>
             <View style={{ width: "100%", marginTop: 15 }}>
-              <DropdownInsurance value={value1} setValue={setValue1}/> 
+              <DropdownInsurance value={value1} setValue={setValue1} />
             </View>
             <View style={[styles.textInputWrapper, { marginTop: "4%" }]}>
-              <TextInput 
-              placeholder={{'Vehicle': 'Idv', 'Health': 'Age', 'Life': 'Duration', 'Travel': 'Duration'}[value1]} 
-              clearTextOnFocus={true} value={value2} onChangeText={setValue2}
-              keyboardType={'number-pad'}
+              <TextInput
+                placeholder={{ 'Vehicle': 'Idv', 'Health': 'Age', 'Life': 'Duration', 'Travel': 'Duration' }[value1]}
+                clearTextOnFocus={true} value={value2} onChangeText={setValue2}
+                keyboardType={'number-pad'}
               />
             </View>
             <View style={styles.textInputWrapper}>
               <TextInput
-                placeholder={{'Vehicle': 'Years', 'Health': 'Premium', 'Life': 'Estimated Premium', 'Travel': 'Estimated Premium'}[value1]} 
+                placeholder={{ 'Vehicle': 'Years', 'Health': 'Premium', 'Life': 'Estimated Premium', 'Travel': 'Estimated Premium' }[value1]}
                 clearTextOnFocus={true}
                 value={value3} onChangeText={setValue3}
                 keyboardType={'number-pad'}
@@ -170,7 +170,11 @@ const GenieProtects = () => {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-                onPress={()=>{setDataVis(true);}}
+                onPress={() => {
+                  setDataVis(true);
+                  setInsurance(value1, value2, value3);
+                  setReload(reload + 1);
+                }}
               >
                 <Text style={{ color: "white", fontSize: 15 }}>Continue</Text>
               </TouchableOpacity>
@@ -178,281 +182,286 @@ const GenieProtects = () => {
           </View>
         </View>
 
-        {dataVis===true && <View style={{ width: "100%", height: 350, marginTop: 30 }}>
-          <View
-            style={{
-              justifyContent: "space-between",
-              marginLeft: 25,
-              marginRight: 25,
-              alignItems: "space-between",
-              flexDirection: "row",
-            }}
-          >
-            <Text
-              style={{ fontWeight: "bold", fontSize: 23, marginBottom: 10 }}
-            >
-              Insurance offers
-            </Text>
+        {loading === true ?
+          <View style={[styles.container, styles.horizontal]}>
+            <ActivityIndicator size="large" />
           </View>
-          <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            styles={{ backgroundColor: "white", marginTop: 10 }}
-          >
-            <View
-              style={[
-                styles.goalCard,
-                {
-                  height: 300,
-                  width: 150,
-                  margin: 10,
-                  borderWidth: 2,
-                  borderColor: "#bd8c5c",
-                  flexDirection: "column",
-                },
-              ]}
-            >
+          : data[0] !== undefined && reload >= 0 ?
+            <View style={{ width: "100%", height: 350, marginTop: 30 }}>
               <View
                 style={{
-                  flex: 1.8,
-                  marginTop: 10,
-                  marginBottom: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
+                  justifyContent: "space-between",
+                  marginLeft: 25,
+                  marginRight: 25,
+                  alignItems: "space-between",
+                  flexDirection: "row",
                 }}
-                overflow="hidden"
               >
-                <Image
-                  source={require("../assets/Images/maxbupa.jpeg")}
-                  resizeMode="contain"
-                  style={{ width: 70 }}
-                ></Image>
+                <Text
+                  style={{ fontWeight: "bold", fontSize: 23, marginBottom: 10 }}
+                >
+                  Insurance offers
+                </Text>
               </View>
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                styles={{ backgroundColor: "white", marginTop: 10 }}
+              >
+                <View
+                  style={[
+                    styles.goalCard,
+                    {
+                      height: 300,
+                      width: 150,
+                      margin: 10,
+                      borderWidth: 2,
+                      borderColor: "#bd8c5c",
+                      flexDirection: "column",
+                    },
+                  ]}
+                >
+                  <View
+                    style={{
+                      flex: 1.8,
+                      marginTop: 10,
+                      marginBottom: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
+                    overflow="hidden"
+                  >
+                    <Image
+                      source={require("../assets/Images/maxbupa.jpeg")}
+                      resizeMode="contain"
+                      style={{ width: 70 }}
+                    ></Image>
+                  </View>
 
-              {/* DIVIDER */}
-              <View
-                style={{
-                  backgroundColor: "#bd8c5c",
-                  width: "100%",
-                  flex: 0.05,
-                  marginTop: 7,
-                }}
-              />
-              <View
-                style={[
-                  styles.statsWrapper,
-                  { flex: 4.2, width: "100%", height: "100%" },
-                ]}
-              >
-                <Text style={styles.statsValHeading}>Premium</Text>
-                <Text style={styles.statsValText}>50,000</Text>
-                <Text style={styles.statsValHeading}>Coverage</Text>
-                <Text style={styles.statsValText}>8,00,000</Text>
-              </View>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#3CB043",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 0,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>View</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#FF2E2E",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 8,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
-              </TouchableOpacity>
-            </View>
-            <View
-              style={[
-                styles.goalCard,
-                {
-                  height: 300,
-                  width: 150,
-                  margin: 10,
-                  borderWidth: 2,
-                  borderColor: "#bd8c5c",
-                  flexDirection: "column",
-                },
-              ]}
-            >
-              <View
-                style={{
-                  flex: 1.8,
-                  marginTop: 10,
-                  marginBottom: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                }}
-                overflow="hidden"
-              >
-                <Image
-                  source={require("../assets/Images/starhealth.jpeg")}
-                  resizeMode="contain"
-                  style={{ width: 65 }}
-                ></Image>
-              </View>
+                  {/* DIVIDER */}
+                  <View
+                    style={{
+                      backgroundColor: "#bd8c5c",
+                      width: "100%",
+                      flex: 0.05,
+                      marginTop: 7,
+                    }}
+                  />
+                  <View
+                    style={[
+                      styles.statsWrapper,
+                      { flex: 4.2, width: "100%", height: "100%" },
+                    ]}
+                  >
+                    <Text style={styles.statsValHeading}>Premium</Text>
+                    <Text style={styles.statsValText}>50,000</Text>
+                    <Text style={styles.statsValHeading}>Coverage</Text>
+                    <Text style={styles.statsValText}>8,00,000</Text>
+                  </View>
+                  <TouchableOpacity
+                    style={{
+                      width: "80%",
+                      backgroundColor: "#3CB043",
+                      margin: 10,
+                      marginLeft: 14,
+                      marginTop: 7,
+                      marginBottom: 0,
+                      borderRadius: 10,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flex: 1,
+                    }}
+                  >
+                    <Text style={{ color: "white", fontSize: 13 }}>View</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      width: "80%",
+                      backgroundColor: "#FF2E2E",
+                      margin: 10,
+                      marginLeft: 14,
+                      marginTop: 7,
+                      marginBottom: 8,
+                      borderRadius: 10,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flex: 1,
+                    }}
+                  >
+                    <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
+                  </TouchableOpacity>
+                </View>
+                <View
+                  style={[
+                    styles.goalCard,
+                    {
+                      height: 300,
+                      width: 150,
+                      margin: 10,
+                      borderWidth: 2,
+                      borderColor: "#bd8c5c",
+                      flexDirection: "column",
+                    },
+                  ]}
+                >
+                  <View
+                    style={{
+                      flex: 1.8,
+                      marginTop: 10,
+                      marginBottom: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
+                    overflow="hidden"
+                  >
+                    <Image
+                      source={require("../assets/Images/starhealth.jpeg")}
+                      resizeMode="contain"
+                      style={{ width: 65 }}
+                    ></Image>
+                  </View>
 
-              {/* DIVIDER */}
-              <View
-                style={{
-                  backgroundColor: "#bd8c5c",
-                  width: "100%",
-                  flex: 0.05,
-                  marginTop: 7,
-                }}
-              />
-              <View
-                style={[
-                  styles.statsWrapper,
-                  { flex: 4.2, width: "100%", height: "100%" },
-                ]}
-              >
-                <Text style={styles.statsValHeading}>Premium</Text>
-                <Text style={styles.statsValText}>50,000</Text>
-                <Text style={styles.statsValHeading}>Coverage</Text>
-                <Text style={styles.statsValText}>8,00,000</Text>
-              </View>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#3CB043",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 0,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>View</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#FF2E2E",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 8,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
-              </TouchableOpacity>
-            </View>
-            <View
-              style={[
-                styles.goalCard,
-                {
-                  height: 300,
-                  width: 150,
-                  margin: 10,
-                  borderWidth: 2,
-                  borderColor: "#bd8c5c",
-                  flexDirection: "column",
-                },
-              ]}
-            >
-              <View
-                style={{
-                  flex: 1.8,
-                  marginTop: 10,
-                  marginBottom: 5,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                }}
-                overflow="hidden"
-              >
-                <Image
-                  source={require("../assets/Images/cholams.jpeg")}
-                  resizeMode="contain"
-                  style={{ width: 100 }}
-                ></Image>
-              </View>
+                  {/* DIVIDER */}
+                  <View
+                    style={{
+                      backgroundColor: "#bd8c5c",
+                      width: "100%",
+                      flex: 0.05,
+                      marginTop: 7,
+                    }}
+                  />
+                  <View
+                    style={[
+                      styles.statsWrapper,
+                      { flex: 4.2, width: "100%", height: "100%" },
+                    ]}
+                  >
+                    <Text style={styles.statsValHeading}>Premium</Text>
+                    <Text style={styles.statsValText}>50,000</Text>
+                    <Text style={styles.statsValHeading}>Coverage</Text>
+                    <Text style={styles.statsValText}>8,00,000</Text>
+                  </View>
+                  <TouchableOpacity
+                    style={{
+                      width: "80%",
+                      backgroundColor: "#3CB043",
+                      margin: 10,
+                      marginLeft: 14,
+                      marginTop: 7,
+                      marginBottom: 0,
+                      borderRadius: 10,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flex: 1,
+                    }}
+                  >
+                    <Text style={{ color: "white", fontSize: 13 }}>View</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      width: "80%",
+                      backgroundColor: "#FF2E2E",
+                      margin: 10,
+                      marginLeft: 14,
+                      marginTop: 7,
+                      marginBottom: 8,
+                      borderRadius: 10,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flex: 1,
+                    }}
+                  >
+                    <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
+                  </TouchableOpacity>
+                </View>
+                <View
+                  style={[
+                    styles.goalCard,
+                    {
+                      height: 300,
+                      width: 150,
+                      margin: 10,
+                      borderWidth: 2,
+                      borderColor: "#bd8c5c",
+                      flexDirection: "column",
+                    },
+                  ]}
+                >
+                  <View
+                    style={{
+                      flex: 1.8,
+                      marginTop: 10,
+                      marginBottom: 5,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
+                    overflow="hidden"
+                  >
+                    <Image
+                      source={require("../assets/Images/cholams.jpeg")}
+                      resizeMode="contain"
+                      style={{ width: 100 }}
+                    ></Image>
+                  </View>
 
-              {/* DIVIDER */}
-              <View
-                style={{
-                  backgroundColor: "#bd8c5c",
-                  width: "100%",
-                  flex: 0.05,
-                  marginTop: 7,
-                }}
-              />
-              <View
-                style={[
-                  styles.statsWrapper,
-                  { flex: 4.2, width: "100%", height: "100%" },
-                ]}
-              >
-                <Text style={styles.statsValHeading}>Premium</Text>
-                <Text style={styles.statsValText}>50,000</Text>
-                <Text style={styles.statsValHeading}>Coverage</Text>
-                <Text style={styles.statsValText}>8,00,000</Text>
-              </View>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#3CB043",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 0,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>View</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: "80%",
-                  backgroundColor: "#FF2E2E",
-                  margin: 10,
-                  marginLeft: 14,
-                  marginTop: 7,
-                  marginBottom: 8,
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flex: 1,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        </View>}
+                  {/* DIVIDER */}
+                  <View
+                    style={{
+                      backgroundColor: "#bd8c5c",
+                      width: "100%",
+                      flex: 0.05,
+                      marginTop: 7,
+                    }}
+                  />
+                  <View
+                    style={[
+                      styles.statsWrapper,
+                      { flex: 4.2, width: "100%", height: "100%" },
+                    ]}
+                  >
+                    <Text style={styles.statsValHeading}>Premium</Text>
+                    <Text style={styles.statsValText}>50,000</Text>
+                    <Text style={styles.statsValHeading}>Coverage</Text>
+                    <Text style={styles.statsValText}>8,00,000</Text>
+                  </View>
+                  <TouchableOpacity
+                    style={{
+                      width: "80%",
+                      backgroundColor: "#3CB043",
+                      margin: 10,
+                      marginLeft: 14,
+                      marginTop: 7,
+                      marginBottom: 0,
+                      borderRadius: 10,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flex: 1,
+                    }}
+                  >
+                    <Text style={{ color: "white", fontSize: 13 }}>View</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      width: "80%",
+                      backgroundColor: "#FF2E2E",
+                      margin: 10,
+                      marginLeft: 14,
+                      marginTop: 7,
+                      marginBottom: 8,
+                      borderRadius: 10,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flex: 1,
+                    }}
+                  >
+                    <Text style={{ color: "white", fontSize: 13 }}>Reject</Text>
+                  </TouchableOpacity>
+                </View>
+              </ScrollView>
+            </View>: <></>}
         <View
           style={{
             paddingTop: "5%",
