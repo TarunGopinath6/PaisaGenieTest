@@ -135,10 +135,12 @@ const GenieGives = () => {
               <DropdownLoan value={value1} setValue={setValue1} />
             </View>
             <View style={[styles.textInputWrapper, { marginTop: "4%" }]}>
-              <TextInput placeholder="Loan Amount" clearTextOnFocus={true} value={value2} onChangeText={setValue2} />
+              <TextInput placeholder="Loan Amount" clearTextOnFocus={true} value={value2} onChangeText={setValue2} 
+              keyboardType={'number-pad'}/>
             </View>
             <View style={styles.textInputWrapper}>
-              <TextInput placeholder="Tenure" clearTextOnFocus={true} value={value3} onChangeText={setValue3} />
+              <TextInput placeholder="Tenure" clearTextOnFocus={true} value={value3} onChangeText={setValue3} 
+              keyboardType={'number-pad'}/>
             </View>
             <View
               style={{

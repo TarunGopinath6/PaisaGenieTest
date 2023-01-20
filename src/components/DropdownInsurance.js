@@ -4,14 +4,13 @@ import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 const data = [
-  { label: "Vehicle", value: "1" },
-  { label: "Health", value: "2" },
-  { label: "Life", value: "3" },
-  { label: "Travel", value: "4" },
+  { label: "Vehicle", value: "Vehicle" },
+  { label: "Health", value: "Health" },
+  { label: "Life", value: "Life" },
+  { label: "Travel", value: "Travel" },
 ];
 
-const DropdownInsurance = () => {
-  const [value, setValue] = useState(null);
+const DropdownInsurance = ({ value, setValue }) => {
   const [isFocus, setIsFocus] = useState(false);
 
   const renderLabel = () => {

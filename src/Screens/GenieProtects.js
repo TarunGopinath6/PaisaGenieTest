@@ -20,11 +20,35 @@ import {
   Alert,
   Modal,
   Pressable,
+  ActivityIndicator
 } from "react-native";
+
+import useInsurance from "../utils/internal/Insurance";
 
 const GenieProtects = () => {
 
   const [dataVis, setDataVis] = useState(false);
+
+  
+  const [reload, setReload] = useState(0);
+  const [data, setData] = useState([]);
+
+  const { getInsurance, setInsurance, loading } = useInsurance();
+
+  const [value1, setValue1] = useState('Vehicle');
+  const [value2, setValue2] = useState(null);
+  const [value3, setValue3] = useState(null);
+
+  useEffect(() => {
+
+    async function fetchData() {
+      let response = await getInsurance();
+      setData(response['data']);
+    }
+
+    fetchData();
+  }, [reload])
+
 
   return (
     <SafeAreaView>
@@ -111,15 +135,21 @@ const GenieProtects = () => {
               Enter Info
             </Text>
             <View style={{ width: "100%", marginTop: 15 }}>
-              <DropdownInsurance /> 
+              <DropdownInsurance value={value1} setValue={setValue1}/> 
             </View>
             <View style={[styles.textInputWrapper, { marginTop: "4%" }]}>
-              <TextInput placeholder="Premium est." clearTextOnFocus={true} />
+              <TextInput 
+              placeholder={{'Vehicle': 'Idv', 'Health': 'Age', 'Life': 'Duration', 'Travel': 'Duration'}[value1]} 
+              clearTextOnFocus={true} value={value2} onChangeText={setValue2}
+              keyboardType={'number-pad'}
+              />
             </View>
             <View style={styles.textInputWrapper}>
               <TextInput
-                placeholder="Value/Age/Duration/Time Period"
+                placeholder={{'Vehicle': 'Years', 'Health': 'Premium', 'Life': 'Estimated Premium', 'Travel': 'Estimated Premium'}[value1]} 
                 clearTextOnFocus={true}
+                value={value3} onChangeText={setValue3}
+                keyboardType={'number-pad'}
               />
             </View>
             <View
