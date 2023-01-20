@@ -175,9 +175,7 @@ const GenieGives = () => {
           <View style={[styles.container, styles.horizontal]}>
             <ActivityIndicator size="large" />
           </View>
-          : data[0] === undefined && reload > 0? 
-            <></>
-          :
+          : data[0] !== undefined && reload >=0 ? 
           <View style={{ width: "100%", height: 350, marginTop: 30 }}>
             <View
               style={{
@@ -453,7 +451,7 @@ const GenieGives = () => {
                 </TouchableOpacity>
               </View>
             </ScrollView>
-          </View>}
+          </View>: <></>}
         <View
           style={{
             paddingTop: "5%",

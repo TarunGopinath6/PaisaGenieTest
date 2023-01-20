@@ -16,11 +16,35 @@ import {
   Modal,
   Alert,
   Pressable,
+  ActivityIndicator
 } from "react-native";
+
+import useInvests from "../utils/internal/Invest";
 
 const GenieGrows = () => {
   const [modalVisibleGrows, setModalVisibleGrows] = useState(false);
   const [dataVis, setDataVis] = useState(false);
+
+  const [reload, setReload] = useState(0);
+  const [data, setData] = useState([]);
+
+  const { getInvests, setInvests, loading } = useInvests();
+
+  const [value1, setValue1] = useState(200000);
+  const [value2, setValue2] = useState(null);
+  const [value3, setValue3] = useState(null);
+  const [value4, setValue4] = useState(null);
+
+  useEffect(() => {
+
+    async function fetchData() {
+      let response = await getInvests();
+      setData(response['data']);
+    }
+
+    fetchData();
+  }, [reload])
+
 
   return (
     <SafeAreaView style={{ paddingBottom: 55 }}>
@@ -58,7 +82,7 @@ const GenieGrows = () => {
                   Enter Info
                 </Text>
                 <View style={{ width: "90%" }}>
-                  <DropdownGrows></DropdownGrows>
+                  <DropdownGrows value={value2} setValue={setValue2} />
                 </View>
                 <View
                   style={{
@@ -73,12 +97,16 @@ const GenieGrows = () => {
                     <TextInput
                       placeholder="Cost of Living"
                       clearTextOnFocus={true}
+                      keyboardType={'number-pad'}
+                      value={value3} onChangeText={setValue3}
                     />
                   </View>
                   <View style={[styles.textInputWrapper, { marginTop: "8%" }]}>
                     <TextInput
                       placeholder="No. of dependants"
                       clearTextOnFocus={true}
+                      keyboardType={'number-pad'}
+                      value={value4} onChangeText={setValue4}
                     />
                   </View>
                 </View>
@@ -103,7 +131,12 @@ const GenieGrows = () => {
                       alignItems: "center",
                       marginRight: 5,
                     }}
-                    onPress={() => {setModalVisibleGrows(!modalVisibleGrows); setDataVis(true)}}
+                    onPress={() => {
+                      setModalVisibleGrows(!modalVisibleGrows);
+                      setDataVis(true);
+                      setInvests(value1, value2, value3, value4);
+                      setReload(reload + 1);
+                    }}
                   >
                     <Text style={{ color: "white", fontSize: 15 }}>Submit</Text>
                   </TouchableOpacity>
@@ -269,7 +302,7 @@ const GenieGrows = () => {
               alignItems: "center",
               marginBottom: 5,
             }}
-            onPress={() => {setModalVisibleGrows(!modalVisibleGrows);setDataVis(false)}}
+            onPress={() => { setModalVisibleGrows(!modalVisibleGrows); setDataVis(false) }}
           >
             <Text style={{ color: "#5217eb", fontSize: 15 }}>
               Generate Investment Plan
@@ -277,123 +310,123 @@ const GenieGrows = () => {
           </TouchableOpacity>
         </View>
 
-        {dataVis===true && <View
-          style={[
-            styles.cardReport,
-            {
-              margin: 10,
-              marginTop: 0,
-              height: 275,
-              padding: 20,
-            },
-          ]}
-        >
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              marginTop: 5,
-            }}
-          >
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 19,
-                marginBottom: 20,
-                color: "#5e17eb",
-              }}
-            >
-              LOW RISK : LOW REWARD
-            </Text>
-          </View>
-          <View
-            style={{
-              width: "100%",
-              justifyContent: "space-between",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: 15, flex: 1 }}>
-              Total Amount Invested :{" "}
-            </Text>
-            <Text style={{ fontSize: 25, fontWeight: "bold", flex: 1 }}>
-              {" "}
-              1.5 L
-            </Text>
-          </View>
 
-          <View
-            style={{
-              width: "100%",
-              justifyContent: "space-between",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: 15, flex: 1 }}>
-              % of Income Invested :{" "}
-            </Text>
-            <Text style={{ fontSize: 25, fontWeight: "bold", flex: 1 }}>
-              {" "}
-              8 %
-            </Text>
+        {loading === true ?
+          <View style={[styles.container, styles.horizontal]}>
+            <ActivityIndicator size="large" />
           </View>
-
-          <View
-            style={{
-              width: "100%",
-              justifyContent: "space-between",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: 15, flex: 1 }}>
-              Recurring Deposit : NPS{" "}
-            </Text>
+          : data[0] !== undefined && reload >=0 ? 
             <View
-              style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
+              style={[
+                styles.cardReport,
+                {
+                  margin: 10,
+                  marginTop: 0,
+                  height: 275,
+                  padding: 20,
+                },
+              ]}
             >
-              <Text style={{ fontSize: 25, fontWeight: "bold" }}> 75 K</Text>
-              <Text style={{ fontSize: 17, color: "grey" }}>(50 %)</Text>
-            </View>
-          </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  marginTop: 5,
+                }}
+              >
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: 19,
+                    marginBottom: 20,
+                    color: "#5e17eb",
+                  }}
+                >
+                  Risk Type: {data[0].risk}
+                </Text>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={{ fontSize: 15, flex: 1 }}>
+                  Total Amount Invested :{" "}
+                </Text>
+                <Text style={{ fontSize: 25, fontWeight: "bold", flex: 1 }}> {data[0].total} </Text>
+              </View>
 
-          <View
-            style={{
-              width: "100%",
-              justifyContent: "space-between",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: 15, flex: 1 }}>Term Deposits : </Text>
-            <View
-              style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
-            >
-              <Text style={{ fontSize: 25, fontWeight: "bold" }}> 60 K</Text>
-              <Text style={{ fontSize: 17, color: "grey" }}>(40 %)</Text>
-            </View>
-          </View>
+              <View
+                style={{
+                  width: "100%",
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={{ fontSize: 15, flex: 1 }}>
+                  % of Income Invested :{" "}
+                </Text>
+                <Text style={{ fontSize: 25, fontWeight: "bold", flex: 1 }}> {data[0].percinvest} </Text>
+              </View>
 
-          <View
-            style={{
-              width: "100%",
-              justifyContent: "space-between",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ fontSize: 15, flex: 1 }}>Mutual Funds :</Text>
-            <View
-              style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
-            >
-              <Text style={{ fontSize: 25, fontWeight: "bold" }}> 15 K</Text>
-              <Text style={{ fontSize: 17, color: "grey" }}>(10 %)</Text>
-            </View>
-          </View>
-        </View>
+              <View
+                style={{
+                  width: "100%",
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={{ fontSize: 15, flex: 1 }}>
+                  {data[0]['primary']['name']} : NPS{" "}
+                </Text>
+                <View
+                  style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
+                >
+                  <Text style={{ fontSize: 25, fontWeight: "bold" }}> {data[0]['primary']['value']} </Text>
+                  <Text style={{ fontSize: 17, color: "grey" }}>({data[0]['primary']['perc']})</Text>
+                </View>
+              </View>
+
+              <View
+                style={{
+                  width: "100%",
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={{ fontSize: 15, flex: 1 }}>{data[0]['secondary']['name']} </Text>
+                <View
+                  style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
+                >
+                  <Text style={{ fontSize: 25, fontWeight: "bold" }}> {data[0]['seconday']['value']}</Text>
+                  <Text style={{ fontSize: 17, color: "grey" }}>({data[0]['secondaty']['perc']})</Text>
+                </View>
+              </View>
+
+              <View
+                style={{
+                  width: "100%",
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={{ fontSize: 15, flex: 1 }}>{data[0]['tertiary']['name']}</Text>
+                <View
+                  style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
+                >
+                  <Text style={{ fontSize: 25, fontWeight: "bold" }}> {data[0]['tertiary']['value']}</Text>
+                  <Text style={{ fontSize: 17, color: "grey" }}>({data[0]['tertiary']['perc']})</Text>
+                </View>
+              </View>
+            </View>:<></>
         }
 
       </ScrollView>

@@ -4,13 +4,12 @@ import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 const data = [
-  { label: "Low Risk:Reward", value: "1" },
-  { label: "Mid Risk:Reward", value: "2" },
-  { label: "High Risk:Reward", value: "3" },
+  { label: "Low Risk:Reward", value: "Low" },
+  { label: "Mid Risk:Reward", value: "Medium" },
+  { label: "High Risk:Reward", value: "High" },
 ];
 
-const DropdownGrows = () => {
-  const [value, setValue] = useState(null);
+const DropdownGrows = ({ value, setValue}) => {
   const [isFocus, setIsFocus] = useState(false);
 
   const renderLabel = () => {
