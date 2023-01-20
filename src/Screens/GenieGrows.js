@@ -30,7 +30,7 @@ const GenieGrows = () => {
 
   const { getInvests, setInvests, loading } = useInvests();
 
-  const [value1, setValue1] = useState(200000);
+  const [value1, setValue1] = useState(1122000);
   const [value2, setValue2] = useState(null);
   const [value3, setValue3] = useState(null);
   const [value4, setValue4] = useState(null);
