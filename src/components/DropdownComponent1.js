@@ -9,8 +9,7 @@ const data = [
   { label: "Investment", value: "3" },
 ];
 
-const DropdownComponent1 = () => {
-  const [value, setValue] = useState(null);
+const DropdownComponent1 = ({ value, setValue }) => {
   const [isFocus, setIsFocus] = useState(false);
 
   const renderLabel = () => {

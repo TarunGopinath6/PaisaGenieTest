@@ -9,8 +9,7 @@ const data = [
   { label: "Equal to", value: "3" },
 ];
 
-const DropdownComponent2 = () => {
-  const [value, setValue] = useState(null);
+const DropdownComponent2 = ({ value, setValue }) => {
   const [isFocus, setIsFocus] = useState(false);
 
   const renderLabel = () => {

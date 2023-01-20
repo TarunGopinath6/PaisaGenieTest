@@ -1,7 +1,7 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import {
   VictoryChart,
   VictoryGroup,
@@ -13,6 +13,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import DropdownComponent1 from "../components/DropdownComponent1";
 import DropdownComponent2 from "../components/DropdownComponent2";
+
+import loadingAnim from "../assets/loading/internal.json"
 
 import {
   View,
@@ -32,12 +34,32 @@ import {
 
 import BannerTop from "../assets/Images/background2.png";
 
+import useGoals from "../utils/internal/Goals";
 
 const MyGenie = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
 
   const [dataVis, setDataVis] = useState(false);
+
+  const [reload, setReload] = useState(0);
+  const [data, setData] = useState([]);
+
+  const { getGoals, setGoals, loading } = useGoals();
+
+  const [value1, setValue1] = useState(null);
+  const [value2, setValue2] = useState(null);
+  const [value3, setValue3] = useState(null);
+
+  useEffect(() => {
+
+    async function fetchData() {
+      let response = await getGoals();
+      setData(response['data']);
+    }
+
+    fetchData();
+  }, [reload])
 
   return (
     <SafeAreaView style={{ marginBottom: 55 }}>
@@ -67,12 +89,12 @@ const MyGenie = () => {
                     Enter Info
                   </Text>
                   <View style={{ width: '90%' }}>
-                    <DropdownComponent1 />
+                    <DropdownComponent1 value={value1} setValue={setValue1}/>
                     {/* NEW COMPONENT TO BE DYNAMICALLY GENERATED, WITH EACH CATEGORY FROM COMPLETECATEGORYWISE ANALYSIS */}
                     {/* THE ADD BUTTON FOR NOW, CLOSES THE MODAL, BUT SHOULD ADD A NEW GOAL */}
-                    <DropdownComponent1 />
+                    <DropdownComponent1 value={value2} setValue={setValue2}/>
                     {/* DICTATES LESS/MORE/EQUAL */}
-                    <DropdownComponent2 />
+                    <DropdownComponent2 value={value3} setValue={setValue3}/>
                   </View>
                   <View style={{ width: '90%', justifyContent: 'center', marginLeft: 15, margin: 0, padding: 0 }}>
                     <View style={[styles.textInputWrapper, { marginTop: "8%" }]}>
@@ -100,7 +122,11 @@ const MyGenie = () => {
                         alignItems: "center",
                         marginRight: 5
                       }}
-                      onPress={() => {setModalVisible(!modalVisible); setDataVis(true); }}
+                      onPress={() => { 
+                        setModalVisible(!modalVisible); 
+                        setGoals(value1, value2, value3);
+                        setReload(reload + 1);
+                      }}
                     >
                       <Text style={{ color: "white", fontSize: 15 }}>Add Goal</Text>
                     </TouchableOpacity>
@@ -137,7 +163,7 @@ const MyGenie = () => {
             <View style={{ flex: 1 }}>
               <Text style={{ fontSize: 15, color: "white" }}>Hello,</Text>
               <Text style={{ fontSize: 18, color: "white" }}>
-              MR.KARPIT VORA JR
+                MR.KARPIT VORA JR
               </Text>
             </View>
             <View>
@@ -349,7 +375,7 @@ const MyGenie = () => {
                 styles.OptionButton,
                 { marginLeft: 6, flexDirection: "row" },
               ]}
-              onPress={()=> {navigation.navigate('BankAccount')}}
+              onPress={() => { navigation.navigate('BankAccount') }}
             >
               <View style={{ flex: 1 }}>
                 <Ionicons name="cube" size={17} style={styles.OptionIcon} />
@@ -365,7 +391,7 @@ const MyGenie = () => {
                 styles.OptionButton,
                 { marginLeft: 6, flexDirection: "row" },
               ]}
-              onPress={()=> {navigation.navigate('Deposits')}}
+              onPress={() => { navigation.navigate('Deposits') }}
             >
               <View style={{ flex: 1 }}>
                 <Ionicons name="book" size={17} style={styles.OptionIcon} />
@@ -864,12 +890,104 @@ const MyGenie = () => {
               </Text>
             </TouchableOpacity>
           </View>
+
+          {loading === true ?
+            <AnimatedLoader
+              visible={true}
+              source={loadingAnim}
+              overlayColor="rgba(255,255,255,1)"
+              animationStyle={styles.lottie}
+              speed={1}
+            >
+              <Text>Fetching Data from Server...</Text>
+            </AnimatedLoader>
+
+            :
+            <ScrollView horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              styles={{ backgroundColor: "white", marginTop: 10 }}>
+              {
+                data.map((obj) => {
+                  return (
+                    <Fragment>
+                      <View
+                        style={[
+                          styles.goalCard,
+                          {
+                            height: 250,
+                            width: 150,
+                            margin: 10,
+                            borderWidth: 2,
+                            borderColor: "#bd8c5c",
+                            flexDirection: "column",
+                          },
+                        ]}
+                      >
+                        <View
+                          style={{
+                            flex: 2,
+                            marginTop: 10,
+                            marginBottom: 5,
+                            justifyContent: "center",
+                            alignItems: "center",
+                            width: "100%",
+                          }}
+                        >
+                          <Text style={{ fontSize: 33 }}> {obj.rate} </Text>
+                        </View>
+                        <View
+                          style={{
+                            flex: 1,
+                            width: "40%",
+                            height: "100%",
+                            borderTopRightRadius: 35,
+                            borderBottomRightRadius: 35,
+                            backgroundColor: "green",
+                          }}
+                        ></View>
+                        <View
+                          style={{
+                            flex: 1,
+                            width: "100%",
+                            alignItems: "center",
+                            marginTop: 15,
+                            marginBottom: 10,
+                          }}
+                        >
+                          <Text
+                            style={{ fontWeight: "bold", fontSize: 17, color: "black" }}
+                          >
+                            {obj.type}
+                          </Text>
+                        </View>
+                        <View
+                          style={{
+                            flex: 3,
+                            width: "100%",
+                            alignItems: "center",
+                            padding: 10,
+                            paddingTop: 0,
+                          }}
+                        >
+                          <Text style={{ fontSize: 14, color: "black" }}>
+                            Spend {obj.compare} Rs. {obj.amount} on {obj.type}
+                          </Text>
+                        </View>
+                      </View>
+                    </Fragment>
+                  )
+                })
+              }
+            </ScrollView>
+          }
+
+{/* 
           <ScrollView
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             styles={{ backgroundColor: "white", marginTop: 10 }}
           >
-            {dataVis==true &&  <View
+            {dataVis == true && <View
               style={[
                 styles.goalCard,
                 {
@@ -933,7 +1051,7 @@ const MyGenie = () => {
                 </Text>
               </View>
             </View>}
-            
+
 
             <View
               style={[
@@ -1127,7 +1245,7 @@ const MyGenie = () => {
                 </Text>
               </View>
             </View>
-          </ScrollView>
+          </ScrollView> */}
         </View>
 
         {/* INVESTMENT PLAN BUTTON */}
@@ -1282,7 +1400,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 22,
     fontWeight: 'bold'
-  }
+  },
+  lottie: {
+    width: 100,
+    height: 100
+  },
 });
 
 export default MyGenie;
