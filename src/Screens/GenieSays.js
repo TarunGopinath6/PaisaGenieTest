@@ -26,17 +26,20 @@ const GenieSays = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [stateVal, setStateVal] = useState(0);
 
-  const [debtData, setDebtData] = useState(false);
+  const [enableMor, setEnableMor] = useState(false);
   const [morData, setMorData] = useState(false);
 
-  const [next, setNext] = useState(false);
+  const [reload, setReload] = useState(0);
   const [data, setData] = useState([]);
 
   const { getEMIs, setEMIs, loading } = useEMIs();
 
-  const [value1, setValue1] = useState(null);
+  const [value1, setValue1] = useState(105000);
   const [value2, setValue2] = useState(null);
   const [value3, setValue3] = useState(null);
+
+  const [value4, setValue4] = useState(null);
+
 
   useEffect(() => {
 
@@ -47,6 +50,17 @@ const GenieSays = () => {
 
     fetchData();
   }, [reload])
+
+
+  const calcMor = () => {
+    let n = data[0].tenure * 12;
+    let r = data[0].interest / 1200;
+    let emi = data[0].emi;
+    let duration = value4;
+    let balance = (105000 * ((1 + r) ** n)) - ((emi / r) * (((1 + r) ** n) - 1))
+    let newEmi = 58510 * ((1 + r) ** duration) - 58510
+    return newEmi
+  }
 
   return (
     <SafeAreaView style={{ paddingBottom: 55 }}>
@@ -96,6 +110,7 @@ const GenieSays = () => {
                       placeholder="Interest Rate"
                       clearTextOnFocus={true}
                       keyboardType={"number-pad"}
+                      value={value2} onChangeText={setValue2}
                     />
                   </View>
                 </View>
@@ -109,7 +124,8 @@ const GenieSays = () => {
                   }}
                 >
                   <View style={[styles.textInputWrapper, { marginTop: "5%" }]}>
-                    <TextInput placeholder="Tenure" clearTextOnFocus={true} keyboardType={"number-pad"} />
+                    <TextInput placeholder="Tenure" clearTextOnFocus={true} keyboardType={"number-pad"}
+                      value={value3} onChangeText={setValue3} />
                   </View>
                 </View>
 
@@ -133,7 +149,12 @@ const GenieSays = () => {
                       alignItems: "center",
                       marginRight: 5,
                     }}
-                    onPress={() => { setModalVisible(!modalVisible); setDebtData(true); }}
+                    onPress={() => {
+                      setModalVisible(!modalVisible);
+                      setEnableMor(true);
+                      setEMIs(value1, value2, value3);
+                      setReload(reload + 1)
+                    }}
                   >
                     <Text style={{ color: "white", fontSize: 15 }}>Submit</Text>
                   </TouchableOpacity>
@@ -293,7 +314,7 @@ const GenieSays = () => {
                   }}
                 >
                   {"  "}
-                  {debtData === false ? "NA" : "10.5%"}
+                  {loading === false && data[0] !== undefined && reload >= 0 ? data[0].interest : "NA"}
                 </Text>
               </Text>
               <Text
@@ -313,7 +334,7 @@ const GenieSays = () => {
                   }}
                 >
                   {" "}
-                  {debtData === false ? "NA" : "120"}
+                  {loading === false && data[0] !== undefined && reload >= 0 ? data[0].tenure : "NA"} yrs
                 </Text>
               </Text>
             </View>
@@ -365,7 +386,7 @@ const GenieSays = () => {
                     }}
                   >
                     {"  "}
-                    {debtData === false ? "NA" : "1418"}
+                    {loading === false && data[0] !== undefined && reload >= 0 ? Math.round(data[0].emi) : "NA"}
                   </Text>
                 </Text>
               </View>
@@ -388,7 +409,7 @@ const GenieSays = () => {
                   color: "#5e17eb",
                 }}
               >
-                TOTAL: {debtData === false ? "NA" : "1.70 L"}
+                TOTAL: {loading === false && data[0] !== undefined && reload >= 0 ? Math.round(data[0].tenure * data[0].emi * 12) : "NA"}
               </Text>
               <Text
                 style={{
@@ -398,7 +419,7 @@ const GenieSays = () => {
                   marginRight: 15,
                 }}
               >
-                BALANCE: {debtData === false ? "NA" : "62.16 K"}
+                BALANCE: {loading === false && data[0] !== undefined && reload >= 0 ? Math.round((data[0].tenure * data[0].emi * 12) - 108000) : "NA"}
               </Text>
             </View>
           </View>
@@ -424,63 +445,61 @@ const GenieSays = () => {
                 { marginTop: "5%", marginLeft: 10, width: "86%" },
               ]}
             >
-              <TextInput placeholder="Enter duration" clearTextOnFocus={true} keyboardType={"number-pad"}/>
+              <TextInput placeholder="Enter duration" clearTextOnFocus={true} keyboardType={"number-pad"}
+                value={value4} onChangeText={setValue4} onEndEditing={() => { setMorData(true); }}
+                editable={enableMor || data[0] != undefined} />
             </View>
-            <View style={{ width: "100%", paddingRight: 20, marginTop: 5 }}>
-              <DropdownMoratorium></DropdownMoratorium>
+
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 10,
+                flexDirection: "row",
+              }}
+            >
+              <Text style={{ flex: 1, marginLeft: 50 }}>Duration: </Text>
+              <Text style={{ flex: 1 }}>{morData === true ? value4 : "NA"} </Text>
             </View>
 
-            {morData===true && <Fragment>
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginTop: 10,
-                  flexDirection: "row",
-                }}
-              >
-                <Text style={{ flex: 1, marginLeft: 50 }}>Duration: </Text>
-                <Text style={{ flex: 1 }}>12 </Text>
-              </View>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 10,
+                flexDirection: "row",
+              }}
+            >
+              <Text style={{ flex: 1, marginLeft: 50 }}>Moratorium Type: </Text>
+              <Text style={{ flex: 1 }}>Increased EMI </Text>
+            </View>
 
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginTop: 10,
-                  flexDirection: "row",
-                }}
-              >
-                <Text style={{ flex: 1, marginLeft: 50 }}>Moratorium Type: </Text>
-                <Text style={{ flex: 1 }}>Increased EMI </Text>
-              </View>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 10,
+                flexDirection: "row",
+              }}
+            >
+              <Text style={{ flex: 1, marginLeft: 50 }}>Increase in EMI: </Text>
+              <Text style={{ flex: 1 }}>
+                Rs. {morData === true ? Math.round(calcMor()) : "NA"}
+              </Text>
+            </View>
 
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginTop: 10,
-                  flexDirection: "row",
-                }}
-              >
-                <Text style={{ flex: 1, marginLeft: 50 }}>Increased EMI: </Text>
-                <Text style={{ flex: 1 }}>Rs. 256 </Text>
-              </View>
-
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "row",
-                }}
-              >
-                <Text style={{ flex: 1, marginLeft: 50 }}>
-                  Increased Payment:{" "}
-                </Text>
-                <Text style={{ flex: 1 }}>Rs. 10,655 </Text>
-              </View>
-
-            </Fragment>}
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+              }}
+            >
+              <Text style={{ flex: 1, marginLeft: 50 }}>
+                New EMI:
+              </Text>
+              <Text style={{ flex: 1 }}>Rs. {morData === true ? Math.round(calcMor() + data[0].emi): "NA"} </Text>
+            </View>
 
             <View
               style={{
@@ -490,7 +509,7 @@ const GenieSays = () => {
                 marginTop: 20,
               }}
             >
-              {morData===false && <TouchableOpacity
+              {enableMor || data[0] != undefined && <TouchableOpacity
                 style={{
                   width: "70%",
                   backgroundColor: "#0779f3",
@@ -499,7 +518,6 @@ const GenieSays = () => {
                   justifyContent: "center",
                   alignItems: "center",
                 }}
-                onPress={()=> {setMorData(true);}}
               >
                 <Text style={{ color: "white", fontSize: 15 }}>Submit</Text>
               </TouchableOpacity>}

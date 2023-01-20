@@ -15,15 +15,15 @@ export default function useEMIs() {
 
         loading, 
 
-        async getLoans() {
+        async getEMIs() {
             setLoading(true);
-            const response = await apiObject.getEMIs(phone);
+            const response = await apiObject.getEMIs(phone)
             setLoading(false);
             return response
         },
 
 
-        async setLoans(value1, value2, value3) {
+        async setEMIs(value1, value2, value3) {
             setLoading(true);
             const response = await apiObject.setEMIs(phone, value1, value2, value3);
             setLoading(false);
