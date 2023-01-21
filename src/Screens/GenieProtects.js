@@ -255,9 +255,9 @@ const GenieProtects = () => {
                     ]}
                   >
                     <Text style={styles.statsValHeading}>Premium</Text>
-                    <Text style={styles.statsValText}>50,000</Text>
+                    <Text style={styles.statsValText}>{Math.round(data[0].premium)}</Text>
                     <Text style={styles.statsValHeading}>Coverage</Text>
-                    <Text style={styles.statsValText}>8,00,000</Text>
+                    <Text style={styles.statsValText}>{Math.round(data[0].coverage)}</Text>
                   </View>
                   <TouchableOpacity
                     style={{
@@ -339,9 +339,9 @@ const GenieProtects = () => {
                     ]}
                   >
                     <Text style={styles.statsValHeading}>Premium</Text>
-                    <Text style={styles.statsValText}>50,000</Text>
+                    <Text style={styles.statsValText}>{Math.round(data[0].premium)}</Text>
                     <Text style={styles.statsValHeading}>Coverage</Text>
-                    <Text style={styles.statsValText}>8,00,000</Text>
+                    <Text style={styles.statsValText}>{Math.round(data[0].coverage)}</Text>
                   </View>
                   <TouchableOpacity
                     style={{
@@ -423,9 +423,9 @@ const GenieProtects = () => {
                     ]}
                   >
                     <Text style={styles.statsValHeading}>Premium</Text>
-                    <Text style={styles.statsValText}>50,000</Text>
+                    <Text style={styles.statsValText}>{Math.round(data[0].premium)}</Text>
                     <Text style={styles.statsValHeading}>Coverage</Text>
-                    <Text style={styles.statsValText}>8,00,000</Text>
+                    <Text style={styles.statsValText}>{Math.round(data[0].coverage)}</Text>
                   </View>
                   <TouchableOpacity
                     style={{
@@ -461,7 +461,7 @@ const GenieProtects = () => {
                   </TouchableOpacity>
                 </View>
               </ScrollView>
-            </View>: <></>}
+            </View> : <></>}
         <View
           style={{
             paddingTop: "5%",
