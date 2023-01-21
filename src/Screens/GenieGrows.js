@@ -371,7 +371,7 @@ const GenieGrows = () => {
                 <Text style={{ fontSize: 15, flex: 1 }}>
                   % of Income Invested :{" "}
                 </Text>
-                <Text style={{ fontSize: 25, fontWeight: "bold", flex: 1 }}> {data[0].percinvest} </Text>
+                <Text style={{ fontSize: 25, fontWeight: "bold", flex: 1 }}> {data[0].percinvest.toFixed(2)} </Text>
               </View>
 
               <View
@@ -405,8 +405,8 @@ const GenieGrows = () => {
                 <View
                   style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
                 >
-                  <Text style={{ fontSize: 25, fontWeight: "bold" }}> {data[0]['seconday']['value']}</Text>
-                  <Text style={{ fontSize: 17, color: "grey" }}>({data[0]['secondaty']['perc']})</Text>
+                  <Text style={{ fontSize: 25, fontWeight: "bold" }}> {data[0]['secondary']['value']}</Text>
+                  <Text style={{ fontSize: 17, color: "grey" }}>({data[0]['secondary']['perc']})</Text>
                 </View>
               </View>
 
